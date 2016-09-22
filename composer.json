@@ -1,0 +1,38 @@
+{
+    "name": "jeancsil/flight-spy",
+    "description": "Flight prices API aggregator",
+    "keywords": [
+        "Skyscanner",
+        "Flights",
+        "Travel",
+        "Trip"
+    ],
+    "type": "library",
+    "require": {
+        "php": ">= 5.5",
+        "guzzlehttp/guzzle": "^6.2",
+        "php-http/guzzle6-adapter": "1.1.*",
+        "symfony/dependency-injection": "^3.1",
+        "symfony/class-loader": "^3.1",
+        "symfony/console": "^3.1",
+        "symfony/config": "3.1.*",
+        "symfony/yaml": "3.1.*",
+        "symfony/http-foundation": "^3.1",
+        "monolog/monolog": "^1.21",
+        "doctrine/annotations": "1.2.*",
+        "mailgun/mailgun-php": "2.1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jeancsil\\FlightSpy\\": ["src", "test"]
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jean Silva",
+            "email": "jeancsil@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}

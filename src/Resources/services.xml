@@ -1,0 +1,85 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="jeancsil_skyscanner_vigilant.validator.command_line_parameter"
+                 class="Jeancsil\FlightSpy\Validator\CommandLineParameterValidator"
+                 public="true">
+        </service>
+
+        <service id="jeancsil_skyscanner_vigilant.api.flights.live_price"
+                 class="Jeancsil\FlightSpy\Api\Flights\LivePrice"
+                 public="true">
+            <call method="setTransport">
+                <!-- TODO Use a CompilerPass -->
+                <argument type="service" id="jeancsil_skyscanner_vigilant.api_http.transport" />
+            </call>
+        </service>
+
+        <service id="jeancsil_skyscanner_vigilant.api_http.transport"
+                 class="Jeancsil\FlightSpy\Api\Http\Transport"
+                 public="true">
+            <argument type="service" id="jeancsil_skyscanner_vigilant.http_client" />
+        </service>
+
+        <service id="jeancsil_skyscanner_vigilant.api_data_transfer.session_parameters_factory"
+                 class="Jeancsil\FlightSpy\Api\DataTransfer\SessionParametersFactory"
+                 public="true">
+            <argument>%jeancsil.flightspy.api.key%</argument>
+        </service>
+
+        <service id="jeancsil_skyscanner_vigilant.api_processor.live_prices"
+                 class="Jeancsil\FlightSpy\Api\Processor\LivePricePostProcessor"
+                 public="true">
+            <argument>%jeancsil.flightspy.email.config.html%</argument>
+            <call method="setNotifier">
+                <argument type="service" id="jeancsil_skyscanner_vigilant.notifier.email" />
+            </call>
+            <call method="setEmailNotifierFactory">
+                <argument type="service" id="jeancsil_skyscanner_vigilant.notifier.factory.email" />
+            </call>
+            <call method="setLogger">
+                <argument type="service" id="jeancsil_skyscanner_vigilant.logger.log" />
+            </call>
+        </service>
+
+        <service id="jeancsil_skyscanner_vigilant.notifier.email"
+                 class="Jeancsil\FlightSpy\Notifier\EmailNotifier">
+            <argument>%jeancsil.flightspy.email.api.key%</argument>
+            <argument>%jeancsil.flightspy.email.api.domainName%</argument>
+        </service>
+
+        <service id="jeancsil_skyscanner_vigilant.notifier.factory.email"
+                 class="Jeancsil\FlightSpy\Notifier\Factory\EmailNotifierFactory">
+            <argument>%jeancsil.flightspy.email.config.from%</argument>
+            <argument>%jeancsil.flightspy.email.config.to%</argument>
+            <argument>%jeancsil.flightspy.email.config.subject%</argument>
+            <argument>%jeancsil.flightspy.email.config.html%</argument>
+        </service>
+
+        <!-- Guzzle -->
+        <service id="jeancsil_skyscanner_vigilant.http_client"
+                 class="GuzzleHttp\Client"
+                 public="true">
+            <argument>%jeancsil.flightspy.http.client.config%</argument>
+        </service>
+
+        <!-- Log -->
+        <service id="jeancsil_skyscanner_vigilant.logger.file"
+                 class="Monolog\Handler\StreamHandler">
+            <argument>/tmp/skyscanner.log</argument>
+            <argument type="constant">Monolog\Logger::DEBUG</argument>
+        </service>
+
+        <service id="jeancsil_skyscanner_vigilant.logger.log"
+                 class="Monolog\Logger">
+            <argument>skyscanner</argument>
+            <call method="pushHandler">
+                <argument type="service" id="jeancsil_skyscanner_vigilant.logger.file" />
+            </call>
+        </service>
+    </services>
+</container>

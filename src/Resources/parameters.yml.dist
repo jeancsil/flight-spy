@@ -1,0 +1,18 @@
+parameters:
+    jeancsil.flightspy.api.key: 'API_KEY'
+    jeancsil.flightspy.api.host: 'http://partners.api.skyscanner.net'
+    jeancsil.flightspy.email.api.key: 'YOUR_EMAL_KEY_MAILGUN'
+    jeancsil.flightspy.email.api.domainName: 'sandbox_DOMAIN.mailgun.org'
+
+    jeancsil.flightspy.email.config.from: 'me@mycompany.com'
+    jeancsil.flightspy.email.config.to: 'your@company.com'
+    jeancsil.flightspy.email.config.subject: 'The best deal!'
+    jeancsil.flightspy.email.config.html: '<html><body>This is the html template<br />{message}</body></html>'
+
+    jeancsil.flightspy.http.client.config:
+        base_uri: '%jeancsil.flightspy.api.host%'
+        timeout: 10
+        headers:
+            Content-Type: 'application/x-www-form-urlencoded'
+            Accept: 'application/json'
+            User-Agent: 'Mozilla/4.0 (Windows NT 9.0; WOW64)'
