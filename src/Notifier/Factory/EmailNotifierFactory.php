@@ -38,6 +38,10 @@ class EmailNotifierFactory {
             $this->notification->html
         );
 
+        if (!$htmlMessage) {
+            $this->notification->ready = false;
+        }
+
         return $this->notification;
     }
 }

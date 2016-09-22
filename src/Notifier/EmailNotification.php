@@ -41,6 +41,6 @@ class EmailNotification implements Notification {
      */
     public function isReady()
     {
-        return !empty($this->from) && !empty($this->to) && !empty($this->subject) && !empty($this->html);
+        return $this->ready === true;
     }
 }
