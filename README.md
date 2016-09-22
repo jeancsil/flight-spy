@@ -21,6 +21,7 @@ Add in your composer.json:
 }
 ```
 
+Rename the src/Resources/parameters.yml.dist to parameters.yml. 
 Add these configurations in your parameters.yml file:
 
 ```yaml
