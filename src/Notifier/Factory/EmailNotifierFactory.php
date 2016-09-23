@@ -28,18 +28,32 @@ class EmailNotifierFactory {
     }
 
     /**
-     * @param string $htmlMessage
+     * @param array $dealsInfo
      * @return EmailNotification
      */
-    public function createNotification($htmlMessage) {
+    public function createNotification(array $dealsInfo) {
+        $message = '';
+        foreach ($dealsInfo as $dealInfo) {
+            $dealInfo = (object) $dealInfo;
+
+            $message .= '<h3>' . $dealInfo->agent . '</h3>';
+            $message .= '<h4>' . number_format($dealInfo->price) . '</h4>';
+
+            if ($dealInfo->deepLinkUrl) {
+                $message .= "<a href=$dealInfo->deepLinkUrl>link</a>";
+            }
+
+            $message .= '<br />';
+        }
+
         $this->notification->html = str_replace(
             '{message}',
-            $htmlMessage,
+            $message,
             $this->notification->html
         );
 
-        if (!$htmlMessage) {
-            $this->notification->ready = false;
+        if ($message) {
+            $this->notification->ready = true;
         }
 
         return $this->notification;

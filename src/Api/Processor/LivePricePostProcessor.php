@@ -27,12 +27,11 @@ class LivePricePostProcessor {
     private $agents = [];
 
     public function process(\stdClass $response) {
-        //$this->logger->debug(sprintf("Response received: %s", json_encode($response, true)));
         $itineraries = $response->Itineraries;
         $cheaperItineraries = array_slice($itineraries, 0, static::MAX_PARSED_DEALS);
         $this->agents = $response->Agents;
-        $htmlMessage = '';
 
+        $deals = [];
         $resultCount = 1;
         foreach ($cheaperItineraries as $itinerary) {
             $this->logger->debug('Verifying itinerary #'. $resultCount++);
@@ -42,17 +41,13 @@ class LivePricePostProcessor {
                 continue;
             }
 
-            $deepLinkUrl = 'no deeplink found';
-            if (isset($itinerary->PricingOptions[0]->DeeplinkUrl)) {
-                $deepLinkUrl = $itinerary->PricingOptions[0]->DeeplinkUrl;
-            }
-
-            $price = $itinerary->PricingOptions[0]->Price;
-
+            $price = $this->getPrice($itinerary);
             if ($price <= $this->maximumPrice) {
-                $agent = $this->getAgentName($itinerary->PricingOptions[0]->Agents);
-                $this->logger->debug("Deal found: ($price) ($agent) ($deepLinkUrl)");
-                $htmlMessage .= " -> ($agent) ($price) ($deepLinkUrl)<br />";
+                $deals[] = [
+                    'price' => $price,
+                    'agent' => $this->getAgentName($itinerary),
+                    'deepLinkUrl' => $this->getDeepLinkUrl($itinerary)
+                ];
                 continue;
             }
 
@@ -60,7 +55,7 @@ class LivePricePostProcessor {
         }
 
         $this->notifier->notify(
-            $this->emailNotifierFactory->createNotification($htmlMessage)
+            $this->emailNotifierFactory->createNotification($deals)
         );
     }
 
@@ -74,8 +69,19 @@ class LivePricePostProcessor {
         return $this;
     }
 
-    private function getAgentName(array $agents) {
+    private function getDeepLinkUrl($itinerary) {
+        if (isset($itinerary->PricingOptions[0]->DeeplinkUrl)) {
+            return $itinerary->PricingOptions[0]->DeeplinkUrl;
+        }
+    }
+
+    private function getPrice($itinerary) {
+        return $itinerary->PricingOptions[0]->Price;
+    }
+
+    private function getAgentName($itinerary) {
         $agentId = 0;
+        $agents = $itinerary->PricingOptions[0]->Agents;
         foreach ($agents as $agent) {
             $agentId = $agent;
             continue;

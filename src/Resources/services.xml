@@ -48,8 +48,13 @@
 
         <service id="jeancsil_skyscanner_vigilant.notifier.email"
                  class="Jeancsil\FlightSpy\Notifier\EmailNotifier">
-            <argument>%jeancsil.flightspy.email.api.key%</argument>
+            <argument type="service" id="jeancsil_skyscanner_vigilant.mailer.mailgun" />
             <argument>%jeancsil.flightspy.email.api.domainName%</argument>
+        </service>
+
+        <service id="jeancsil_skyscanner_vigilant.mailer.mailgun"
+                 class="Mailgun\Mailgun">
+            <argument>%jeancsil.flightspy.email.api.key%</argument>
         </service>
 
         <service id="jeancsil_skyscanner_vigilant.notifier.factory.email"

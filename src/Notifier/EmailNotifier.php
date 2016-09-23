@@ -11,15 +11,15 @@ class EmailNotifier implements NotifiableInterface {
     /**
      * @var string
      */
-    private $apiKey;
-
-    /**
-     * @var string
-     */
     private $domainName;
 
-    public function __construct($apiKey, $domainName) {
-        $this->apiKey = $apiKey;
+    /**
+     * @var Mailgun
+     */
+    private $mailer;
+
+    public function __construct(Mailgun $mailer, $domainName) {
+        $this->mailer = $mailer;
         $this->domainName = $domainName;
     }
 
@@ -34,8 +34,7 @@ class EmailNotifier implements NotifiableInterface {
             return;
         }
 
-        $mail = new Mailgun($this->apiKey);
-        $mail->sendMessage(
+        $this->mailer->sendMessage(
             $this->domainName,
             [
                 'from' => $notification->from,
