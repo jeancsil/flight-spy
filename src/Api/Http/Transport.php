@@ -11,7 +11,6 @@ use Jeancsil\FlightSpy\Api\DataTransfer\SessionParameters;
 
 class Transport {
     const LIVE_PRICING = '/apiservices/pricing/v1.0';
-//    const LIVE_PRICING = '/xep6c1xe';
 
     /**
      * @var \GuzzleHttp\Client
@@ -23,15 +22,27 @@ class Transport {
      */
     private $pollUrl;
 
+    /**
+     * @param ClientInterface $client
+     */
     public function __construct(ClientInterface $client) {
         $this->client = $client;
     }
 
+    /**
+     * @param SessionParameters $parameters
+     * @return array
+     */
     public function findQuotes(SessionParameters $parameters) {
         $this->createSession($parameters);
+
         return $this->poll();
     }
 
+    /**
+     * @param SessionParameters $parameters
+     * @throws \Exception
+     */
     private function createSession(SessionParameters $parameters) {
         try {
             $parametersArray = $parameters->toArray();
@@ -47,11 +58,14 @@ class Transport {
             $this->setPollUrl($request->getHeaders()['Location'][0], $parametersArray['apiKey']);
             sleep(1);
         } catch (BadResponseException $e) {
-            //TODO
-            echo $e->getMessage();die;
+            echo "createSession::BadResponseException: " . $e->getMessage();
+            die;
         }
     }
 
+    /**
+     * @return array
+     */
     private function poll() {
         try {
             $request = $this
@@ -61,7 +75,9 @@ class Transport {
             //TODO FIXME
             return \GuzzleHttp\json_decode($request->getBody()->getContents());
         } catch (BadResponseException $e) {
-            //print_r($e->getResponse());
+            echo "pool::BadResponseException:";
+            print_r($e->getResponse());
+            die;
         }
     }
 
