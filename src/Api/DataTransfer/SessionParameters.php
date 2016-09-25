@@ -24,7 +24,8 @@ namespace Jeancsil\FlightSpy\Api\DataTransfer;
  * infants	No	The number of infants	Int	Defaults to 0, cannot exceed adults
  * groupPricing	No	Show price-per-adult (false), or price for all passengers (true)	bool	Defaults to false
  */
-class SessionParameters {
+class SessionParameters
+{
     public $apiKey;
     public $country;
     public $currency;
@@ -41,7 +42,7 @@ class SessionParameters {
     public $groupPricing;
 
     /**
-     * TODO move this method from here
+     * @return array
      */
     public function toArray() {
         $params = [
