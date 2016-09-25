@@ -37,11 +37,17 @@ class CommandLineParameterValidator implements ValidatorInterface
      * @throw ValidationException
      */
     public function validate() {
+        $configFile = $this->input->getOption(Parameter::FILE);
         $from = $this->input->getOption(Parameter::FROM);
         $to = $this->input->getOption(Parameter::TO);
         $departureDate = $this->input->getOption(Parameter::DEPARTURE_DATE);
         $returnDate = $this->input->getOption(Parameter::RETURN_DATE);
         $maxPrice = $this->input->getOption(Parameter::MAX_PRICE);
+
+        if ($configFile && file_exists($configFile)) {
+            return; // TODO validate file content
+            //throw new \InvalidArgumentException(sprintf('File not found: %s', $configFile));
+        }
 
         $options = [
             '--from' => $from,
