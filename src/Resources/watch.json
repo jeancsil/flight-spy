@@ -1,0 +1,28 @@
+/**
+ * Example of configuration file to watch more than one deal each time
+ */
+[
+  {
+    "api-key": "your-api-key",
+    "from": "FRA-sky",
+    "to": "TXL-sky",
+    "departure": "2016-10-10",
+    "arrival": "2016-11-16",
+    "max-price": "3500",
+    "country": "BR",
+    "currency": "BRL",
+    "locale": "pt-BR",
+    "adults": "1"
+  },
+  {
+    "from": "SAO-sky",
+    "to": "FRA-sky",
+    "departure": "2016-10-12",
+    "arrival": "2016-11-19",
+    "max-price": "10000",
+    "country": "BR",
+    "currency": "BRL",
+    "locale": "pt-BR",
+    "adults": "2"
+  }
+]
