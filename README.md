@@ -41,9 +41,7 @@ jeancsil.flightspy.http.client.config:
 Simply run `./bin/flight-watcher flightspy:skyscanner:live_prices --help` to learn how it works.
 
 ## Examples
-Watch as many trips as you wish:
-
-*(see src/Resources/watch.json)*
+Watch as many trips as you wish: *(see src/Resources/watch.json)*
 `./bin/flight-watcher flightspy:skyscanner:live_prices --file=yourWatchFile.json`
 
 **OR**
