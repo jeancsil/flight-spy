@@ -22,10 +22,29 @@ class LivePricePostProcessor {
     private $maximumPrice;
 
     /**
+     * @var float
+     */
+    private $maximumPrices;
+
+    /**
      * @var array
      */
     private $agents = [];
 
+    /**
+     * @param array $responses
+     */
+    public function multiProcess(array $responses) {
+        for ($iteration = 0; $iteration < count($responses); $iteration++) {
+            $response = $responses[$iteration];
+            $this->defineDealMaxPrice($this->maximumPrices[$iteration]);
+            $this->process($response);
+        }
+    }
+
+    /**
+     * @param \stdClass $response
+     */
     public function process(\stdClass $response) {
         $itineraries = $response->Itineraries;
         $cheaperItineraries = array_slice($itineraries, 0, static::MAX_PARSED_DEALS);
@@ -43,6 +62,8 @@ class LivePricePostProcessor {
 
             $price = $this->getPrice($itinerary);
             if ($price <= $this->maximumPrice) {
+                $this->logger->debug("Deal found (%s)", $price);
+
                 $deals[] = [
                     'price' => $price,
                     'agent' => $this->getAgentName($itinerary),
@@ -59,6 +80,10 @@ class LivePricePostProcessor {
         );
     }
 
+    /**
+     * @param float $maximumPrice
+     * @return $this
+     */
     public function defineDealMaxPrice($maximumPrice) {
         if (!is_numeric($maximumPrice)) {
             throw new \InvalidArgumentException(sprintf('Expecting numeric received %s', gettype($maximumPrice)));
@@ -69,16 +94,40 @@ class LivePricePostProcessor {
         return $this;
     }
 
+    public function defineDealMaxPrices(array $maximumPrices) {
+        foreach ($maximumPrices as $maximumPrice) {
+            if (!is_numeric($maximumPrice)) {
+                throw new \InvalidArgumentException(sprintf('Expecting numeric received %s', gettype($maximumPrice)));
+            }
+        }
+
+        $this->maximumPrices = $maximumPrices;
+
+        return $this;
+    }
+
+    /**
+     * @param \stdClass $itinerary
+     * @return string
+     */
     private function getDeepLinkUrl($itinerary) {
         if (isset($itinerary->PricingOptions[0]->DeeplinkUrl)) {
             return $itinerary->PricingOptions[0]->DeeplinkUrl;
         }
     }
 
+    /**
+     * @param \stdClass $itinerary
+     * @return string
+     */
     private function getPrice($itinerary) {
         return $itinerary->PricingOptions[0]->Price;
     }
 
+    /**
+     * @param \stdClass $itinerary
+     * @return string
+     */
     private function getAgentName($itinerary) {
         $agentId = 0;
         $agents = $itinerary->PricingOptions[0]->Agents;
