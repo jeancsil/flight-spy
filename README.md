@@ -38,9 +38,18 @@ jeancsil.flightspy.http.client.config:
 
 ## Documentation
 
-Simply run `php application.php flightspy:skyscanner:live_prices --help` to get it running.
+Simply run `./bin/flight-watcher flightspy:skyscanner:live_prices --help` to get it running.
 
-Example:`php application.php flightspy:skyscanner:live_prices --from=SAO-sky --to=FRA-sky --departure=2016-10-10 --arrival=2016-11-20 --country=BR --currency=BRL --locale=pt-BR --adults=2 --max-price=8000`.
+## Examples
+Watch as many trips as you wish:
+
+*(see src/Resources/watch.json)*
+`./bin/flight-watcher flightspy:skyscanner:live_prices --file=yourWatchFile.json`
+
+**OR**
+
+Watch a single trip:
+`./bin/flight-watcher flightspy:skyscanner:live_prices --from=SAO-sky --to=FRA-sky --departure=2016-10-10 --arrival=2016-11-20 --country=BR --currency=BRL --locale=pt-BR --adults=2 --max-price=8000`.
 
 You might want to put it in your crontab as well. (*and go grab a beer!*)
 
