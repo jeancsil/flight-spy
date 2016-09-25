@@ -26,7 +26,7 @@ Add these configurations in your parameters.yml file:
 
 ```yaml
 jeancsil.flightspy.api.host: 'http://partners.api.skyscanner.net'
-jeancsil.flightspy.api.key: YOUR_API_KEY
+jeancsil.flightspy.api.key: YOUR_API_KEY (OPTIONAL)
 jeancsil.flightspy.http.client.config:
     base_uri: '%jeancsil.flightspy.api.host%'
     timeout: 30
@@ -49,6 +49,7 @@ Watch as many trips as you wish (see src/Resources/watch.json):
 **OR**
 
 Watch a single trip:
+
 `./bin/flight-watcher flightspy:skyscanner:live_prices --from=SAO-sky --to=FRA-sky --departure=2016-10-10 --arrival=2016-11-20 --country=BR --currency=BRL --locale=pt-BR --adults=2 --max-price=8000`.
 
 You might want to put it in your crontab as well. (*and go grab a beer!*)
@@ -57,7 +58,7 @@ You might want to put it in your crontab as well. (*and go grab a beer!*)
 
 For general support and questions, find me on Twitter as [@jeancsil](http://twitter.com./jeancsil).
 
-Bugs and suggestions: [open a ticket](https://github.com/jeancsil/SkyscannerVigilantBundle/issues).
+Bugs and suggestions: [open a ticket](https://github.com/jeancsil/flight-spy/issues).
 
 ## License
 
