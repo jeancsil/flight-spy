@@ -35,7 +35,7 @@ class EmailNotifierFactory {
      */
     public function createNotification(array $dealsInfo, SessionParameters $sessionParameters) {
         $message = sprintf(
-            'From: %s.<br />To: %s.<br />Departure: %s.<br />Arrival: %s.<br />Currency: %s<br />Adults: %s<br />',
+            '<br />From: %s.<br />To: %s.<br />Departure: %s.<br />Arrival: %s.<br />Currency: %s<br />Adults: %s<br />',
             $sessionParameters->originPlace,
             $sessionParameters->destinationPlace,
             $sessionParameters->outboundDate,

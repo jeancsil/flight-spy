@@ -5,22 +5,16 @@
  */
 namespace Jeancsil\FlightSpy\Notifier;
 
-use Mailgun\Mailgun;
+use Postmark\PostmarkClient;
 
 class EmailNotifier implements NotifiableInterface {
     /**
-     * @var string
-     */
-    private $domainName;
-
-    /**
-     * @var Mailgun
+     * @var PostmarkClient
      */
     private $mailer;
 
-    public function __construct(Mailgun $mailer, $domainName) {
+    public function __construct(PostmarkClient $mailer) {
         $this->mailer = $mailer;
-        $this->domainName = $domainName;
     }
 
     public function notify(Notification $notification) {
@@ -34,14 +28,11 @@ class EmailNotifier implements NotifiableInterface {
             return;
         }
 
-        $this->mailer->sendMessage(
-            $this->domainName,
-            [
-                'from' => $notification->from,
-                'to' => $notification->to,
-                'subject' => $notification->subject,
-                'html' => $notification->html
-            ]
+        $this->mailer->sendEmail(
+            $notification->from,
+            $notification->to,
+            $notification->subject,
+            $notification->html
         );
     }
 }
