@@ -1,8 +1,8 @@
 # Flight Spy
 [![Flight Spy](http://business.skyscanner.net/Content/images/logo/ssf-white-color.png)](http://www.skyscanner.net)
 
-[![Latest Stable Version](https://img.shields.io/badge/jeancsil-flight--spy-blue.svg)](https://packagist.org/packages/jeancsil/flight-spy)
-
+[![Latest Stable Version](https://img.shields.io/badge/packagist-flight--spy-blue.svg)](https://packagist.org/packages/jeancsil/flight-spy)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jeancsil/flight-spy/master/LICENSE) [![Twitter](https://img.shields.io/twitter/url/https/github.com/jeancsil/flight-spy.svg?style=social)](https://twitter.com/intent/tweet?text=Watch the best fare for your next trip!&url=http://github.com%2Fjeancsil%2Fflight-spy)
 
 
 Provides console commands to keep watching flight deals for you!
@@ -17,7 +17,7 @@ Add in your composer.json:
 
 ```json
 "require": {
-    "jeancsil/flyght-spy": "1.*"
+    "jeancsil/flight-spy": "1.*"
 }
 ```
 
