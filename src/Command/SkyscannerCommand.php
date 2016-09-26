@@ -55,20 +55,23 @@ class SkyscannerCommand extends ContainerAwareCommand
                 }
 
                 $this->getLivePricesProcessor()
+                    ->setSessionParameters($parameters[0])
                     ->defineDealMaxPrices($this->getSessionParametersFactory()->getMaxPrices())
                     ->multiProcess($response);
-            } else {
-                $parameters = $this->getSessionParametersFactory()
-                    ->createFromInput($input);
-
-                if (!$response = $this->getLivePricesApi()->getDeals($parameters)) {
-                    return;
-                }
-
-                $this->getLivePricesProcessor()
-                    ->defineDealMaxPrice($input->getOption(Parameter::MAX_PRICE))
-                    ->process($response);
+                return;
             }
+
+            $parameters = $this->getSessionParametersFactory()
+                ->createFromInput($input);
+
+            if (!$response = $this->getLivePricesApi()->getDeals($parameters)) {
+                return;
+            }
+
+            $this->getLivePricesProcessor()
+                ->setSessionParameters($parameters)
+                ->defineDealMaxPrice($input->getOption(Parameter::MAX_PRICE))
+                ->singleProcess($response);
         } catch (\InvalidArgumentException $e) {
             echo 'Exception caught:' . PHP_EOL,
             $e->getMessage() . PHP_EOL,

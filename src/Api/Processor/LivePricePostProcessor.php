@@ -5,6 +5,7 @@
  */
 namespace Jeancsil\FlightSpy\Api\Processor;
 
+use Jeancsil\FlightSpy\Api\DataTransfer\SessionParameters;
 use Jeancsil\FlightSpy\Notifier\Factory\EmailNotifierFactoryAwareTrait;
 use Jeancsil\FlightSpy\Notifier\NotifierAwareTrait;
 use Psr\Log\LoggerAwareTrait;
@@ -15,6 +16,11 @@ class LivePricePostProcessor {
     use LoggerAwareTrait;
 
     const MAX_PARSED_DEALS = 5;
+
+    /**
+     * @var SessionParameters
+     */
+    private $sessionParameters;
 
     /**
      * @var float
@@ -35,17 +41,75 @@ class LivePricePostProcessor {
      * @param array $responses
      */
     public function multiProcess(array $responses) {
+        $deals = [];
         for ($iteration = 0; $iteration < count($responses); $iteration++) {
             $response = $responses[$iteration];
             $this->defineDealMaxPrice($this->maximumPrices[$iteration]);
-            $this->process($response);
+            $deals = array_merge($deals, $this->doProcess($response));
         }
+
+        $this->notifier->notify(
+            $this->emailNotifierFactory->createNotification($deals, $this->sessionParameters)
+        );
     }
 
     /**
      * @param \stdClass $response
      */
-    public function process(\stdClass $response) {
+    public function singleProcess(\stdClass $response) {
+        $this->notifier->notify(
+            $this->emailNotifierFactory->createNotification(
+                $this->doProcess($response),
+                $this->sessionParameters
+            )
+        );
+    }
+
+    /**
+     * @param SessionParameters $parameters
+     * @return $this
+     */
+    public function setSessionParameters(SessionParameters $parameters) {
+        $this->sessionParameters = $parameters;
+
+        return $this;
+    }
+
+    /**
+     * @param $maximumPrice
+     * @return $this
+     */
+    public function defineDealMaxPrice($maximumPrice) {
+        if (!is_numeric($maximumPrice)) {
+            throw new \InvalidArgumentException(sprintf('Expecting numeric received %s', gettype($maximumPrice)));
+        }
+
+        $this->maximumPrice = $maximumPrice;
+
+        return $this;
+    }
+
+    /**
+     * @param array $maximumPrices
+     * @return $this
+     */
+    public function defineDealMaxPrices(array $maximumPrices) {
+        foreach ($maximumPrices as $maximumPrice) {
+            if (!is_numeric($maximumPrice)) {
+                throw new \InvalidArgumentException(sprintf('Expecting numeric received %s', gettype($maximumPrice)));
+            }
+        }
+
+        $this->maximumPrices = $maximumPrices;
+
+        return $this;
+    }
+
+    /**
+     * @param \stdClass $response
+     * @return array
+     */
+    private function doProcess(\stdClass $response) {
         $itineraries = $response->Itineraries;
         $cheaperItineraries = array_slice($itineraries, 0, static::MAX_PARSED_DEALS);
         $this->agents = $response->Agents;
@@ -62,7 +126,7 @@ class LivePricePostProcessor {
 
             $price = $this->getPrice($itinerary);
             if ($price <= $this->maximumPrice) {
-                $this->logger->debug("Deal found (%s)", $price);
+                $this->logger->debug(sprintf("Deal found (%s)", $price));
 
                 $deals[] = [
                     'price' => $price,
@@ -71,39 +135,9 @@ class LivePricePostProcessor {
                 ];
                 continue;
             }
-
-            $this->logger->debug("skipping...");
         }
 
-        $this->notifier->notify(
-            $this->emailNotifierFactory->createNotification($deals)
-        );
-    }
-
-    /**
-     * @param float $maximumPrice
-     * @return $this
-     */
-    public function defineDealMaxPrice($maximumPrice) {
-        if (!is_numeric($maximumPrice)) {
-            throw new \InvalidArgumentException(sprintf('Expecting numeric received %s', gettype($maximumPrice)));
-        }
-
-        $this->maximumPrice = $maximumPrice;
-
-        return $this;
-    }
-
-    public function defineDealMaxPrices(array $maximumPrices) {
-        foreach ($maximumPrices as $maximumPrice) {
-            if (!is_numeric($maximumPrice)) {
-                throw new \InvalidArgumentException(sprintf('Expecting numeric received %s', gettype($maximumPrice)));
-            }
-        }
-
-        $this->maximumPrices = $maximumPrices;
-
-        return $this;
+        return $deals;
     }
 
     /**

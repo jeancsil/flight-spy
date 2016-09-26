@@ -5,6 +5,7 @@
  */
 namespace Jeancsil\FlightSpy\Notifier\Factory;
 
+use Jeancsil\FlightSpy\Api\DataTransfer\SessionParameters;
 use Jeancsil\FlightSpy\Notifier\EmailNotification;
 
 class EmailNotifierFactory {
@@ -29,13 +30,22 @@ class EmailNotifierFactory {
 
     /**
      * @param array $dealsInfo
+     * @param SessionParameters $sessionParameters
      * @return EmailNotification
      */
-    public function createNotification(array $dealsInfo) {
-        $message = '';
+    public function createNotification(array $dealsInfo, SessionParameters $sessionParameters) {
+        $message = sprintf(
+            'From: %s.<br />To: %s.<br />Departure: %s.<br />Arrival: %s.<br />Currency: %s<br />Adults: %s<br />',
+            $sessionParameters->originPlace,
+            $sessionParameters->destinationPlace,
+            $sessionParameters->outboundDate,
+            $sessionParameters->inboundDate,
+            $sessionParameters->currency,
+            $sessionParameters->adults
+        );
+
         foreach ($dealsInfo as $dealInfo) {
             $dealInfo = (object) $dealInfo;
-
             $message .= '<h3>' . $dealInfo->agent . '</h3>';
             $message .= '<h4>' . number_format($dealInfo->price) . '</h4>';
 

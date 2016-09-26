@@ -34,7 +34,7 @@ class SessionParametersFactory
 
     /**
      * @param string $configFile
-     * @return Parameter[]
+     * @return SessionParameters[]
      */
     public function createFromConfigFile($configFile) {
         $configurations = json_decode(file_get_contents($configFile), true);
