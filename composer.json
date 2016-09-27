@@ -30,14 +30,22 @@
         "wildbit/postmark-php": "2.2.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "5.5.*",
-        "squizlabs/php_codesniffer": "2.7.*"
+        "phpunit/phpunit": "~5.5",
+        "squizlabs/php_codesniffer": "~2.7",
+        "phpmd/phpmd": "~2.4"
     },
     "autoload": {
         "psr-4": {
-            "Jeancsil\\FlightSpy\\": ["src", "test"]
+            "Jeancsil\\FlightSpy\\": "src"
         }
     },
-    "bin": [""],
+    "autoload-dev": {
+      "psr-4": {
+        "Jeancsil\\FlightSpy\\": "test"
+      }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
     "minimum-stability": "dev"
 }
