@@ -6,4 +6,4 @@ php:
 
 install: composer install --optimize-autoloader --no-suggest --no-interaction --prefer-source
 
-script: php vendor/bin/phpunit --coverage-text
+script: php vendor/bin/phpunit --coverage-html reports/coverage

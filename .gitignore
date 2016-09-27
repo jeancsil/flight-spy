@@ -1,3 +1,4 @@
 .idea
 vendor
+reports
 src/Resources/parameters.yml
