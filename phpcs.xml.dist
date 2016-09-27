@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ruleset name="FlightSpy">
+    <description>The coding standard for FlightSpy PSR2.</description>
+
+    <file>./src/</file>
+
+    <arg name="colors"/>
+    <arg value="pns"/>
+
+    <rule ref="PSR2"/>
+</ruleset>
