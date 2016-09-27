@@ -9,20 +9,20 @@ namespace Jeancsil\FlightSpy\Api\DataTransfer;
  * @see http://business.skyscanner.net/portal/en-GB/Documentation/FlightsLivePricingList#createsession
  *
  * [name] [mandatory?] [description]
- * apiKey	Yes	The API Key to identify the customer	String	Must be a valid API Key
- * country	Yes	The user’s market country	String	ISO country code, or specified location schema
- * currency	Yes	The user’s currency	String	ISO currency code
- * locale	Yes	The user’s localization preference	String	ISO locale code (language and country)
- * originplace	Yes	The origin city or airport	String	Specified location schema, or Skyscanner Rnid
- * destinationplace	Yes	The destination city or airport	String	Specified location schema, or Skyscanner Rnid
- * outbounddate	Yes	The departure date	Date	Formatted as YYYY-mm-dd
- * inbounddate	No	The return date	Date	Formatted as YYYY-mm-dd
- * locationschema	No	The code schema used for locations	String	The supported codes are below
- * cabinclass	No	The Cabin Class	String	The supported codes are below
- * adults	Yes	The number of adults	Int	Defaults to 1 if not specified. Maximum 8
- * children	No	The number of children	Int	Defaults to 0, maximum 8
- * infants	No	The number of infants	Int	Defaults to 0, cannot exceed adults
- * groupPricing	No	Show price-per-adult (false), or price for all passengers (true)	bool	Defaults to false
+ * apiKey    Yes    The API Key to identify the customer    String    Must be a valid API Key
+ * country    Yes    The user’s market country    String    ISO country code, or specified location schema
+ * currency    Yes    The user’s currency    String    ISO currency code
+ * locale    Yes    The user’s localization preference    String    ISO locale code (language and country)
+ * originplace    Yes    The origin city or airport    String    Specified location schema, or Skyscanner Rnid
+ * destinationplace    Yes    The destination city or airport    String    Specified location schema, or Skyscanner Rnid
+ * outbounddate    Yes    The departure date    Date    Formatted as YYYY-mm-dd
+ * inbounddate    No    The return date    Date    Formatted as YYYY-mm-dd
+ * locationschema    No    The code schema used for locations    String    The supported codes are below
+ * cabinclass    No    The Cabin Class    String    The supported codes are below
+ * adults    Yes    The number of adults    Int    Defaults to 1 if not specified. Maximum 8
+ * children    No    The number of children    Int    Defaults to 0, maximum 8
+ * infants    No    The number of infants    Int    Defaults to 0, cannot exceed adults
+ * groupPricing    No    Show price-per-adult (false), or price for all passengers (true)    bool    Defaults to false
  */
 class SessionParameters
 {
@@ -44,7 +44,8 @@ class SessionParameters
     /**
      * @return array
      */
-    public function toArray() {
+    public function toArray()
+    {
         $params = [
             'apiKey' => $this->apiKey,
             'country' => $this->country,

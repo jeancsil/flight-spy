@@ -10,7 +10,8 @@ use Jeancsil\FlightSpy\Notifier\Factory\EmailNotifierFactoryAwareTrait;
 use Jeancsil\FlightSpy\Notifier\NotifierAwareTrait;
 use Psr\Log\LoggerAwareTrait;
 
-class LivePricePostProcessor {
+class LivePricePostProcessor
+{
     use NotifierAwareTrait;
     use EmailNotifierFactoryAwareTrait;
     use LoggerAwareTrait;
@@ -40,7 +41,8 @@ class LivePricePostProcessor {
     /**
      * @param array $responses
      */
-    public function multiProcess(array $responses) {
+    public function multiProcess(array $responses)
+    {
         $deals = [];
         for ($iteration = 0; $iteration < count($responses); $iteration++) {
             $response = $responses[$iteration];
@@ -56,7 +58,8 @@ class LivePricePostProcessor {
     /**
      * @param \stdClass $response
      */
-    public function singleProcess(\stdClass $response) {
+    public function singleProcess(\stdClass $response)
+    {
         $this->notifier->notify(
             $this->emailNotifierFactory->createNotification(
                 $this->doProcess($response),
@@ -69,7 +72,8 @@ class LivePricePostProcessor {
      * @param SessionParameters $parameters
      * @return $this
      */
-    public function setSessionParameters(SessionParameters $parameters) {
+    public function setSessionParameters(SessionParameters $parameters)
+    {
         $this->sessionParameters = $parameters;
 
         return $this;
@@ -79,7 +83,8 @@ class LivePricePostProcessor {
      * @param $maximumPrice
      * @return $this
      */
-    public function defineDealMaxPrice($maximumPrice) {
+    public function defineDealMaxPrice($maximumPrice)
+    {
         if (!is_numeric($maximumPrice)) {
             throw new \InvalidArgumentException(sprintf('Expecting numeric received %s', gettype($maximumPrice)));
         }
@@ -93,7 +98,8 @@ class LivePricePostProcessor {
      * @param array $maximumPrices
      * @return $this
      */
-    public function defineDealMaxPrices(array $maximumPrices) {
+    public function defineDealMaxPrices(array $maximumPrices)
+    {
         foreach ($maximumPrices as $maximumPrice) {
             if (!is_numeric($maximumPrice)) {
                 throw new \InvalidArgumentException(sprintf('Expecting numeric received %s', gettype($maximumPrice)));
@@ -109,7 +115,8 @@ class LivePricePostProcessor {
      * @param \stdClass $response
      * @return array
      */
-    private function doProcess(\stdClass $response) {
+    private function doProcess(\stdClass $response)
+    {
         $itineraries = $response->Itineraries;
         $cheaperItineraries = array_slice($itineraries, 0, static::MAX_PARSED_DEALS);
         $this->agents = $response->Agents;
@@ -144,7 +151,8 @@ class LivePricePostProcessor {
      * @param \stdClass $itinerary
      * @return string
      */
-    private function getDeepLinkUrl($itinerary) {
+    private function getDeepLinkUrl($itinerary)
+    {
         if (isset($itinerary->PricingOptions[0]->DeeplinkUrl)) {
             return $itinerary->PricingOptions[0]->DeeplinkUrl;
         }
@@ -154,7 +162,8 @@ class LivePricePostProcessor {
      * @param \stdClass $itinerary
      * @return string
      */
-    private function getPrice($itinerary) {
+    private function getPrice($itinerary)
+    {
         return $itinerary->PricingOptions[0]->Price;
     }
 
@@ -162,7 +171,8 @@ class LivePricePostProcessor {
      * @param \stdClass $itinerary
      * @return string
      */
-    private function getAgentName($itinerary) {
+    private function getAgentName($itinerary)
+    {
         $agentId = 0;
         $agents = $itinerary->PricingOptions[0]->Agents;
         foreach ($agents as $agent) {

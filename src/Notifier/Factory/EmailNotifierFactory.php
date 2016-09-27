@@ -8,7 +8,8 @@ namespace Jeancsil\FlightSpy\Notifier\Factory;
 use Jeancsil\FlightSpy\Api\DataTransfer\SessionParameters;
 use Jeancsil\FlightSpy\Notifier\EmailNotification;
 
-class EmailNotifierFactory {
+class EmailNotifierFactory
+{
     /**
      * @var EmailNotification
      */
@@ -20,7 +21,8 @@ class EmailNotifierFactory {
      * @param string $subject
      * @param string $htmlTemplate
      */
-    public function __construct($from, $to, $subject, $htmlTemplate) {
+    public function __construct($from, $to, $subject, $htmlTemplate)
+    {
         $this->notification = new EmailNotification();
         $this->notification->from = $from;
         $this->notification->to = $to;
@@ -33,9 +35,15 @@ class EmailNotifierFactory {
      * @param SessionParameters $sessionParameters
      * @return EmailNotification
      */
-    public function createNotification(array $dealsInfo, SessionParameters $sessionParameters) {
+    public function createNotification(array $dealsInfo, SessionParameters $sessionParameters)
+    {
         $message = sprintf(
-            '<br />From: %s.<br />To: %s.<br />Departure: %s.<br />Arrival: %s.<br />Currency: %s<br />Adults: %s<br />',
+            '<br />From: %s.
+            <br />To: %s.
+            <br />Departure: %s.
+            <br />Arrival: %s.
+            <br />Currency: %s
+            <br />Adults: %s<br />',
             $sessionParameters->originPlace,
             $sessionParameters->destinationPlace,
             $sessionParameters->outboundDate,

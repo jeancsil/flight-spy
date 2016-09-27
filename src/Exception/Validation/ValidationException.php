@@ -6,6 +6,7 @@
  */
 namespace Jeancsil\FlightSpy\Exception\Validation;
 
-class ValidationException extends \Exception {
+class ValidationException extends \Exception
+{
 
 }

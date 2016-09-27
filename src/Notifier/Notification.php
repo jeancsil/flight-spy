@@ -5,6 +5,7 @@
  */
 namespace Jeancsil\FlightSpy\Notifier;
 
-interface Notification {
+interface Notification
+{
 
 }

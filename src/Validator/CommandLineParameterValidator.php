@@ -20,7 +20,8 @@ class CommandLineParameterValidator implements ValidatorInterface
      * @param $instance
      * @return $this
      */
-    public function setInstance($instance) {
+    public function setInstance($instance)
+    {
         if (!$instance instanceof InputInterface) {
             throw new \LogicException(
                 sprintf('$instance must be instance of InputInterface. %s given', $instance)
@@ -36,7 +37,8 @@ class CommandLineParameterValidator implements ValidatorInterface
      * TODO validate all fields
      * @throw ValidationException
      */
-    public function validate() {
+    public function validate()
+    {
         $configFile = $this->input->getOption(Parameter::FILE);
         $from = $this->input->getOption(Parameter::FROM);
         $to = $this->input->getOption(Parameter::TO);

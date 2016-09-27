@@ -7,17 +7,20 @@ namespace Jeancsil\FlightSpy\Notifier;
 
 use Postmark\PostmarkClient;
 
-class EmailNotifier implements NotifiableInterface {
+class EmailNotifier implements NotifiableInterface
+{
     /**
      * @var PostmarkClient
      */
     private $mailer;
 
-    public function __construct(PostmarkClient $mailer) {
+    public function __construct(PostmarkClient $mailer)
+    {
         $this->mailer = $mailer;
     }
 
-    public function notify(Notification $notification) {
+    public function notify(Notification $notification)
+    {
         if (!$notification instanceof EmailNotification) {
             throw new \LogicException(
                 sprintf('Expecting instance of EmailNotification. %s given.', get_class($notification))

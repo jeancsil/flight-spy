@@ -15,7 +15,8 @@ trait TransportAwareTrait
     /**
      * @param Transport $transport
      */
-    public function setTransport(Transport $transport) {
+    public function setTransport(Transport $transport)
+    {
         $this->transport = $transport;
     }
 }

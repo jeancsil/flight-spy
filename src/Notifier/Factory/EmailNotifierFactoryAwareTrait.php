@@ -5,7 +5,8 @@
  */
 namespace Jeancsil\FlightSpy\Notifier\Factory;
 
-trait EmailNotifierFactoryAwareTrait {
+trait EmailNotifierFactoryAwareTrait
+{
     /**
      * @var EmailNotifierFactory
      */
@@ -14,7 +15,8 @@ trait EmailNotifierFactoryAwareTrait {
     /**
      * @param EmailNotifierFactory $emailNotifierFactory
      */
-    public function setEmailNotifierFactory(EmailNotifierFactory $emailNotifierFactory) {
+    public function setEmailNotifierFactory(EmailNotifierFactory $emailNotifierFactory)
+    {
         $this->emailNotifierFactory = $emailNotifierFactory;
     }
 }

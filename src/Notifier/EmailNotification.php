@@ -5,7 +5,8 @@
  */
 namespace Jeancsil\FlightSpy\Notifier;
 
-class EmailNotification implements Notification {
+class EmailNotification implements Notification
+{
     /**
      * @var string
      */

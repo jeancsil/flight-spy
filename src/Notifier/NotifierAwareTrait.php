@@ -5,7 +5,8 @@
  */
 namespace Jeancsil\FlightSpy\Notifier;
 
-trait NotifierAwareTrait {
+trait NotifierAwareTrait
+{
     /**
      * @var NotifiableInterface
      */
@@ -14,7 +15,8 @@ trait NotifierAwareTrait {
     /**
      * @param NotifiableInterface $notifier
      */
-    public function setNotifier(NotifiableInterface $notifier) {
+    public function setNotifier(NotifiableInterface $notifier)
+    {
         $this->notifier = $notifier;
     }
 }

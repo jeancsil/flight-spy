@@ -9,7 +9,8 @@ use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use Jeancsil\FlightSpy\Api\DataTransfer\SessionParameters;
 
-class Transport {
+class Transport
+{
     const LIVE_PRICING = '/apiservices/pricing/v1.0';
 
     /**
@@ -25,7 +26,8 @@ class Transport {
     /**
      * @param ClientInterface $client
      */
-    public function __construct(ClientInterface $client) {
+    public function __construct(ClientInterface $client)
+    {
         $this->client = $client;
     }
 
@@ -33,7 +35,8 @@ class Transport {
      * @param SessionParameters $parameters
      * @return array
      */
-    public function findQuotes(SessionParameters $parameters) {
+    public function findQuotes(SessionParameters $parameters)
+    {
         $this->createSession($parameters);
 
         return $this->poll();
@@ -43,7 +46,8 @@ class Transport {
      * @param SessionParameters $parameters
      * @throws \Exception
      */
-    private function createSession(SessionParameters $parameters) {
+    private function createSession(SessionParameters $parameters)
+    {
         try {
             $parametersArray = $parameters->toArray();
 
@@ -66,7 +70,8 @@ class Transport {
     /**
      * @return array
      */
-    private function poll() {
+    private function poll()
+    {
         try {
             $request = $this
                 ->client
@@ -85,7 +90,8 @@ class Transport {
      * @param $url
      * @param $apiKey
      */
-    private function setPollUrl($url, $apiKey) {
+    private function setPollUrl($url, $apiKey)
+    {
         $this->pollUrl = "$url?apiKey=$apiKey&sorttype=price&sortorder=desc";
     }
 }

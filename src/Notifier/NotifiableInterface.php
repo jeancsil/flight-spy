@@ -5,6 +5,7 @@
  */
 namespace Jeancsil\FlightSpy\Notifier;
 
-interface NotifiableInterface {
+interface NotifiableInterface
+{
     public function notify(Notification $notification);
 }

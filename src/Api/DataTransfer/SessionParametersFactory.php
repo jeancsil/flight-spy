@@ -28,7 +28,8 @@ class SessionParametersFactory
     /**
      * @param string $apiKey
      */
-    public function __construct($apiKey) {
+    public function __construct($apiKey)
+    {
         $this->apiKey = $apiKey;
     }
 
@@ -36,7 +37,8 @@ class SessionParametersFactory
      * @param string $configFile
      * @return SessionParameters[]
      */
-    public function createFromConfigFile($configFile) {
+    public function createFromConfigFile($configFile)
+    {
         $configurations = json_decode(file_get_contents($configFile), true);
 
         $parameters = [];
@@ -55,7 +57,8 @@ class SessionParametersFactory
      * @param InputInterface $input
      * @return SessionParameters
      */
-    public function createFromInput(InputInterface $input) {
+    public function createFromInput(InputInterface $input)
+    {
         $parameters = new SessionParameters();
         $parameters->apiKey = $input->getOption(Parameter::API_KEY) ?: $this->apiKey;
         $parameters->originPlace = $input->getOption(Parameter::FROM);
@@ -78,7 +81,8 @@ class SessionParametersFactory
     /**
      * @return array
      */
-    public function getMaxPrices() {
+    public function getMaxPrices()
+    {
         return $this->maxPrices;
     }
 
@@ -86,7 +90,8 @@ class SessionParametersFactory
      * @param array $configuration
      * @return SessionParameters
      */
-    private function createFromArray(array $configuration) {
+    private function createFromArray(array $configuration)
+    {
         $this->configCache = $configuration;
 
         $parameters = new SessionParameters();
@@ -113,7 +118,8 @@ class SessionParametersFactory
      * @param mixed $defaultValue
      * @return mixed
      */
-    private function getValue($parameter, $defaultValue = null) {
+    private function getValue($parameter, $defaultValue = null)
+    {
         if (isset($this->configCache[$parameter])) {
             return $this->configCache[$parameter];
         }

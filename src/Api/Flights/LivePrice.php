@@ -16,7 +16,8 @@ class LivePrice
      * @param SessionParameters $parameters
      * @return array
      */
-    public function getDeals(SessionParameters $parameters) {
+    public function getDeals(SessionParameters $parameters)
+    {
         return $this->transport->findQuotes($parameters);
     }
 
@@ -24,7 +25,8 @@ class LivePrice
      * @param array $parameters
      * @return array
      */
-    public function getMultiDeals(array $parameters) {
+    public function getMultiDeals(array $parameters)
+    {
         $response = [];
         foreach ($parameters as $parameter) {
             if (!$parameter instanceof SessionParameters) {

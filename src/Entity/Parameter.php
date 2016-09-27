@@ -5,7 +5,8 @@
  */
 namespace Jeancsil\FlightSpy\Entity;
 
-class Parameter {
+class Parameter
+{
     const FILE = 'file';
     const FROM = 'from';
     const TO = 'to';

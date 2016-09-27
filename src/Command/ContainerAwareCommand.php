@@ -21,7 +21,8 @@ class ContainerAwareCommand extends Command implements ContainerAwareInterface
      *
      * @throws \LogicException
      */
-    protected function getContainer() {
+    protected function getContainer()
+    {
         if (null === $this->container) {
             throw new \LogicException('The container cannot be retrieved as the application instance is not yet set.');
         }
@@ -34,7 +35,8 @@ class ContainerAwareCommand extends Command implements ContainerAwareInterface
      *
      * @param ContainerInterface|null $container A ContainerInterface instance or null
      */
-    public function setContainer(ContainerInterface $container = null) {
+    public function setContainer(ContainerInterface $container = null)
+    {
         $this->container = $container;
     }
 }
