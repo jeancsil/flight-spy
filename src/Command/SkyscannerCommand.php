@@ -4,10 +4,10 @@ namespace Jeancsil\FlightSpy\Command;
 use Jeancsil\FlightSpy\Api\DataTransfer\SessionParametersFactory;
 use Jeancsil\FlightSpy\Api\Flights\LivePrice;
 use Jeancsil\FlightSpy\Api\Processor\LivePricePostProcessor;
-use Jeancsil\FlightSpy\Entity\Parameter as P;
+use Jeancsil\FlightSpy\Entity\Parameter;
 use Jeancsil\FlightSpy\Validator\ValidatorInterface;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption as I;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -21,51 +21,121 @@ class SkyscannerCommand extends ContainerAwareCommand
         $this
             ->setName('flightspy:skyscanner:live_prices')
             ->setDescription('Look for live prices in Skyscanner for the determined filters')
-            ->addOption(P::FILE, null, I::VALUE_OPTIONAL, 'Load all your trips watcher from a config file (JSON)')
-            ->addOption(P::FROM, null, I::VALUE_OPTIONAL, 'Starting point of your trip.')
-            ->addOption(P::TO, null, I::VALUE_OPTIONAL, 'Your destiny.')
-            ->addOption(P::DEPARTURE_DATE, null, I::VALUE_OPTIONAL, 'The departure date (dd-mm-yyyy).')
-            ->addOption(P::RETURN_DATE, null, I::VALUE_OPTIONAL, 'The return date (dd-mm-yyyy).')
-            ->addOption(P::MAX_PRICE, null, I::VALUE_OPTIONAL, 'Maximum price to consider as a good deal (1500).')
-            ->addOption(P::API_KEY, null, I::VALUE_OPTIONAL, 'The Skyscanner API key.')
             ->addOption(
-                P::LOCATION_SCHEMA,
+                Parameter::FILE,
                 null,
-                I::VALUE_OPTIONAL,
+                InputOption::VALUE_OPTIONAL,
+                'Load all your trips watcher from a config file (JSON)'
+            )
+
+            ->addOption(
+                Parameter::FROM,
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Starting point of your trip.'
+            )
+
+            ->addOption(
+                Parameter::TO,
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Your destiny.'
+            )
+
+            ->addOption(
+                Parameter::DEPARTURE_DATE,
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'The departure date (dd-mm-yyyy).'
+            )
+
+            ->addOption(
+                Parameter::RETURN_DATE,
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'The return date (dd-mm-yyyy).'
+            )
+
+            ->addOption(
+                Parameter::MAX_PRICE,
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Maximum price to consider as a good deal (1500).'
+            )
+
+            ->addOption(
+                Parameter::API_KEY,
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'The Skyscanner API key.'
+            )
+
+            ->addOption(
+                Parameter::LOCATION_SCHEMA,
+                null,
+                InputOption::VALUE_OPTIONAL,
                 'One of the locations schema: Iata, GeoNameCode, GeoNameId, Rnid, Sky.',
                 'Sky'
             )
-            ->addOption(P::COUNTRY, null, I::VALUE_OPTIONAL, 'Country code (ISO or a valid one from location schema).')
-            ->addOption(P::CURRENCY, null, I::VALUE_OPTIONAL, 'The currency or every price.')
             ->addOption(
-                P::LOCALE,
+                Parameter::COUNTRY,
                 null,
-                I::VALUE_OPTIONAL,
+                InputOption::VALUE_OPTIONAL,
+                'Country code (ISO or a valid one from location schema).'
+            )
+
+            ->addOption(
+                Parameter::CURRENCY,
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'The currency or every price.'
+            )
+
+            ->addOption(
+                Parameter::LOCALE,
+                null,
+                InputOption::VALUE_OPTIONAL,
                 'The locale (ISO containing language and country. Eg.: pt-BR, DE-de).'
             )
-            ->addOption(P::ADULTS, null, I::VALUE_OPTIONAL, 'Number of adults. (Between 1 an 8).', P::DEFAULT_ADULTS)
+
             ->addOption(
-                P::CABIN_CLASS,
+                Parameter::ADULTS,
                 null,
-                I::VALUE_OPTIONAL,
+                InputOption::VALUE_OPTIONAL,
+                'Number of adults. (Between 1 an 8).',
+                Parameter::DEFAULT_ADULTS
+            )
+
+            ->addOption(
+                Parameter::CABIN_CLASS,
+                null,
+                InputOption::VALUE_OPTIONAL,
                 'The cabin class. (Economy, PremiumEconomy, Business, First).',
-                P::DEFAULT_CABIN_CLASS
+                Parameter::DEFAULT_CABIN_CLASS
             )
+
             ->addOption(
-                P::CHILDREN,
+                Parameter::CHILDREN,
                 null,
-                I::VALUE_OPTIONAL,
+                InputOption::VALUE_OPTIONAL,
                 'The number of children. (Between 0 and 8).',
-                P::DEFAULT_CHILDREN
+                Parameter::DEFAULT_CHILDREN
+            )
+
+            ->addOption(
+                Parameter::INFANTS,
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'The number of infants. Cannot exceeds adults.',
+                Parameter::DEFAULT_INFANTS
             )
             ->addOption(
-                P::INFANTS,
+                Parameter::GROUP_PRICING,
                 null,
-                I::VALUE_OPTIONAL,
-                'The number of infants. Cannot exceeds adults.',
-                P::DEFAULT_INFANTS
+                InputOption::VALUE_OPTIONAL,
+                'Show price per adult.',
+                Parameter::DEFAULT_GROUP_PRICING
             )
-            ->addOption(P::GROUP_PRICING, null, I::VALUE_OPTIONAL, 'Show price per adult.', P::DEFAULT_GROUP_PRICING)
         ;
     }
 
@@ -77,9 +147,9 @@ class SkyscannerCommand extends ContainerAwareCommand
             ->validate();
 
         try {
-            if ($input->getOption(P::FILE)) {
+            if ($input->getOption(Parameter::FILE)) {
                 $parameters = $this->getSessionParametersFactory()
-                    ->createFromConfigFile($input->getOption(P::FILE));
+                    ->createFromConfigFile($input->getOption(Parameter::FILE));
 
                 if (!$response = $this->getLivePricesApi()->getMultiDeals($parameters)) {
                     return;
@@ -101,7 +171,7 @@ class SkyscannerCommand extends ContainerAwareCommand
 
             $this->getLivePricesProcessor()
                 ->setSessionParameters($parameters)
-                ->defineDealMaxPrice($input->getOption(P::MAX_PRICE))
+                ->defineDealMaxPrice($input->getOption(Parameter::MAX_PRICE))
                 ->singleProcess($response);
         } catch (\InvalidArgumentException $e) {
             echo 'Exception caught:' . PHP_EOL,
