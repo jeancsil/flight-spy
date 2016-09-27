@@ -167,7 +167,7 @@ class SkyscannerCommand extends ContainerAwareCommand
     {
         return $this
             ->getContainer()
-            ->get('jeancsil_skyscanner_vigilant.validator.command_line_parameter');
+            ->get('jeancsil_flight_spy.validator.command_line_parameter');
     }
 
     /**
@@ -176,7 +176,7 @@ class SkyscannerCommand extends ContainerAwareCommand
     private function getMultiDeal()
     {
         return $this->getContainer()
-            ->get('jeancsil_skyscanner_vigilant.facade.multi_deal');
+            ->get('jeancsil_flight_spy.facade.multi_deal');
     }
 
     /**
@@ -185,6 +185,6 @@ class SkyscannerCommand extends ContainerAwareCommand
     private function getSingleDeal()
     {
         return $this->getContainer()
-            ->get('jeancsil_skyscanner_vigilant.facade.single_deal');
+            ->get('jeancsil_flight_spy.facade.single_deal');
     }
 }
