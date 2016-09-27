@@ -1,6 +1,13 @@
 {
     "name": "jeancsil/flight-spy",
     "description": "Flight prices API aggregator",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jean Silva",
+            "email": "me@jeancsil.com"
+        }
+    ],
     "keywords": [
         "Skyscanner",
         "Flights",
@@ -23,19 +30,14 @@
         "wildbit/postmark-php": "2.2.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "5.5.*"
+        "phpunit/phpunit": "5.5.*",
+        "squizlabs/php_codesniffer": "2.7.*"
     },
     "autoload": {
         "psr-4": {
             "Jeancsil\\FlightSpy\\": ["src", "test"]
         }
     },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Jean Silva",
-            "email": "jeancsil@gmail.com"
-        }
-    ],
+    "bin": [""],
     "minimum-stability": "dev"
 }
