@@ -35,7 +35,7 @@ class EmailNotification implements Notification
     /**
      * @var bool
      */
-    public $ready;
+    public $ready = false;
 
     /**
      * @return boolean

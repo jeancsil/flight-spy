@@ -70,7 +70,7 @@ class EmailNotifierFactory
             $this->notification->html
         );
 
-        if ($message) {
+        if (!empty($dealsInfo)) {
             $this->notification->ready = true;
         }
 
