@@ -5,7 +5,7 @@
  */
 namespace Jeancsil\FlightSpy\Api\DataTransfer;
 
-use Jeancsil\FlightSpy\Entity\Parameter;
+use Jeancsil\FlightSpy\Command\Entity\Parameter;
 use Symfony\Component\Console\Input\InputInterface;
 
 class SessionParametersFactory

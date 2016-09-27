@@ -3,7 +3,7 @@
  * @author Jean Silva <me@jeancsil.com>
  * @license MIT
  */
-namespace Jeancsil\FlightSpy\Entity;
+namespace Jeancsil\FlightSpy\Command\Entity;
 
 class Parameter
 {

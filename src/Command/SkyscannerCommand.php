@@ -4,7 +4,7 @@ namespace Jeancsil\FlightSpy\Command;
 use Jeancsil\FlightSpy\Api\DataTransfer\SessionParametersFactory;
 use Jeancsil\FlightSpy\Api\Flights\LivePrice;
 use Jeancsil\FlightSpy\Api\Processor\LivePricePostProcessor;
-use Jeancsil\FlightSpy\Entity\Parameter;
+use Jeancsil\FlightSpy\Command\Entity\Parameter;
 use Jeancsil\FlightSpy\Validator\ValidatorInterface;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
