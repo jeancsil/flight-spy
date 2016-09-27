@@ -1,6 +1,6 @@
 <?php
 /**
- * @author Jean Silva <jeancsil@gmail.com>
+ * @author Jean Silva <me@jeancsil.com>
  * @license MIT
  */
 namespace Jeancsil\FlightSpy\Api\Http;

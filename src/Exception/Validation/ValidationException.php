@@ -1,6 +1,6 @@
 <?php
 /**
- * @author Jean Silva <jeancsil@gmail.com>
+ * @author Jean Silva <me@jeancsil.com>
  * @package Jeancsil\FlightSpy\Exception\Validation
  * @license MIT
  */

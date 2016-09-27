@@ -1,15 +1,11 @@
 <?php
 /**
- * @author Jean Silva <jeancsil@gmail.com>
+ * @author Jean Silva <me@jeancsil.com>
  * @license MIT
  */
 namespace Jeancsil\FlightSpy\Api\Flights;
 
-use Jeancsil\FlightSpy\Api\DataTransfer\TravelOptions;
-
 class BrowseCache
 {
-    public function getDeals(TravelOptions $travelOptions) {
 
-    }
 }

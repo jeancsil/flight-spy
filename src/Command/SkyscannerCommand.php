@@ -11,7 +11,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * @author Jean Silva <jeancsil@gmail.com>
+ * @author Jean Silva <me@jeancsil.com>
  * @license MIT
  */
 class SkyscannerCommand extends ContainerAwareCommand
