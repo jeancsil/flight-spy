@@ -43,7 +43,9 @@ Simply run `./bin/flight-watcher flightspy:skyscanner:live_prices --help` to lea
 
 ## Examples
 
-Watch as many trips as you wish (see src/Resources/watch.json):
+Watch as many trips as you wish (**Recommended**):
+
+*(see src/Resources/watch.json)*
 
 `./bin/flight-watcher flightspy:skyscanner:live_prices --file=yourWatchFile.json`
 
