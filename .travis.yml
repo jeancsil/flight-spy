@@ -8,5 +8,5 @@ install: composer install --optimize-autoloader --no-suggest --no-interaction --
 
 script:
   - bin/phpunit
+  - bin/phpcs
 #  - bin/phpmd src html cleancode,codesize,controversial,design,naming,unusedcode
-#  - bin/phpcs
