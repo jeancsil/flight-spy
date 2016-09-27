@@ -5,6 +5,22 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <service id="jeancsil_skyscanner_vigilant.facade.deal_processor"
+                 class="Jeancsil\FlightSpy\Facade\AbstractDealProcessor"
+                 abstract="true">
+            <argument type="service" id="jeancsil_skyscanner_vigilant.api_data_transfer.session_parameters_factory" />
+            <argument type="service" id="jeancsil_skyscanner_vigilant.api.flights.live_price" />
+            <argument type="service" id="jeancsil_skyscanner_vigilant.api_processor.live_prices" />
+        </service>
+
+        <service id="jeancsil_skyscanner_vigilant.facade.multi_deal"
+                 class="Jeancsil\FlightSpy\Facade\MultiDealFacade"
+                 parent="jeancsil_skyscanner_vigilant.facade.deal_processor" />
+
+        <service id="jeancsil_skyscanner_vigilant.facade.single_deal"
+                 class="Jeancsil\FlightSpy\Facade\SingleDealFacade"
+                 parent="jeancsil_skyscanner_vigilant.facade.deal_processor" />
+
         <service id="jeancsil_skyscanner_vigilant.validator.command_line_parameter"
                  class="Jeancsil\FlightSpy\Validator\CommandLineParameterValidator"
                  public="true">
@@ -14,7 +30,6 @@
                  class="Jeancsil\FlightSpy\Api\Flights\LivePrice"
                  public="true">
             <call method="setTransport">
-                <!-- TODO Use a CompilerPass -->
                 <argument type="service" id="jeancsil_skyscanner_vigilant.api_http.transport" />
             </call>
         </service>

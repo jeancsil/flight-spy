@@ -11,7 +11,7 @@ interface ValidatorInterface
      * @param $instance
      * @return $this
      */
-    public function setInstance($instance);
+    public function setTarget($instance);
 
     /**
      * @throw ValidationException

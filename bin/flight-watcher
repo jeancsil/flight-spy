@@ -21,6 +21,8 @@ $loader->load('services.xml');
 $loader = new YamlFileLoader($container, $resourcesLocator);
 $loader->load('parameters.yml');
 
+$container->compile();
+
 $skyscanner = new SkyscannerCommand();
 $skyscanner->setContainer($container);
 

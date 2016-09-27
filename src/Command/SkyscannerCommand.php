@@ -1,10 +1,9 @@
 <?php
 namespace Jeancsil\FlightSpy\Command;
 
-use Jeancsil\FlightSpy\Api\DataTransfer\SessionParametersFactory;
-use Jeancsil\FlightSpy\Api\Flights\LivePrice;
-use Jeancsil\FlightSpy\Api\Processor\LivePricePostProcessor;
 use Jeancsil\FlightSpy\Command\Entity\Parameter;
+use Jeancsil\FlightSpy\Facade\MultiDealFacade;
+use Jeancsil\FlightSpy\Facade\SingleDealFacade;
 use Jeancsil\FlightSpy\Validator\ValidatorInterface;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -129,6 +128,7 @@ class SkyscannerCommand extends ContainerAwareCommand
                 'The number of infants. Cannot exceeds adults.',
                 Parameter::DEFAULT_INFANTS
             )
+
             ->addOption(
                 Parameter::GROUP_PRICING,
                 null,
@@ -139,40 +139,20 @@ class SkyscannerCommand extends ContainerAwareCommand
         ;
     }
 
-
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return void
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->getValidator()
-            ->setInstance($input)
+            ->setTarget($input)
             ->validate();
 
         try {
-            if ($input->getOption(Parameter::FILE)) {
-                $parameters = $this->getSessionParametersFactory()
-                    ->createFromConfigFile($input->getOption(Parameter::FILE));
-
-                if (!$response = $this->getLivePricesApi()->getMultiDeals($parameters)) {
-                    return;
-                }
-
-                $this->getLivePricesProcessor()
-                    ->setSessionParameters($parameters[0])
-                    ->defineDealMaxPrices($this->getSessionParametersFactory()->getMaxPrices())
-                    ->multiProcess($response);
-                return;
-            }
-
-            $parameters = $this->getSessionParametersFactory()
-                ->createFromInput($input);
-
-            if (!$response = $this->getLivePricesApi()->getDeals($parameters)) {
-                return;
-            }
-
-            $this->getLivePricesProcessor()
-                ->setSessionParameters($parameters)
-                ->defineDealMaxPrice($input->getOption(Parameter::MAX_PRICE))
-                ->singleProcess($response);
+            $this->getMultiDeal()->process($input);
+            $this->getSingleDeal()->process($input);
         } catch (\InvalidArgumentException $e) {
             echo 'Exception caught:' . PHP_EOL,
             $e->getMessage() . PHP_EOL,
@@ -191,29 +171,20 @@ class SkyscannerCommand extends ContainerAwareCommand
     }
 
     /**
-     * @return LivePrice
+     * @return MultiDealFacade
      */
-    private function getLivePricesApi()
+    private function getMultiDeal()
     {
         return $this->getContainer()
-            ->get('jeancsil_skyscanner_vigilant.api.flights.live_price');
+            ->get('jeancsil_skyscanner_vigilant.facade.multi_deal');
     }
 
     /**
-     * @return LivePricePostProcessor
+     * @return SingleDealFacade
      */
-    private function getLivePricesProcessor()
+    private function getSingleDeal()
     {
         return $this->getContainer()
-            ->get('jeancsil_skyscanner_vigilant.api_processor.live_prices');
-    }
-
-    /**
-     * @return SessionParametersFactory
-     */
-    private function getSessionParametersFactory()
-    {
-        return $this->getContainer()
-            ->get('jeancsil_skyscanner_vigilant.api_data_transfer.session_parameters_factory');
+            ->get('jeancsil_skyscanner_vigilant.facade.single_deal');
     }
 }
