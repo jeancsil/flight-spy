@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Flight spy by jeancsil</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Flight spy</h1>
+          <h2>Look for airplane tickets automatically and constantly!</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/jeancsil/flight-spy/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/jeancsil/flight-spy/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/jeancsil/flight-spy" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a id="flight-spy" class="anchor" href="#flight-spy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Flight Spy</h1>
+
+<p><a href="http://www.skyscanner.net"><img src="http://business.skyscanner.net/Content/images/logo/ssf-white-color.png" alt="Flight Spy"></a></p>
+
+<p><a href="https://travis-ci.org/jeancsil/flight-spy"><img src="https://travis-ci.org/jeancsil/flight-spy.svg?branch=master" alt="Build Status"></a>
+<a href="https://packagist.org/packages/jeancsil/flight-spy"><img src="https://img.shields.io/badge/packagist-flight--spy-blue.svg" alt="Latest Stable Version"></a>
+<a href="https://raw.githubusercontent.com/jeancsil/flight-spy/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="GitHub license"></a> <a href="https://twitter.com/intent/tweet?text=Watch%20the%20best%20fare%20for%20your%20next%20trip!&amp;url=http://github.com%2Fjeancsil%2Fflight-spy"><img src="https://img.shields.io/twitter/url/https/github.com/jeancsil/flight-spy.svg?style=social" alt="Twitter"></a></p>
+
+<p>Provides console commands to keep watching flight deals for you!</p>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
+
+<p><code>composer require jeancsil/flight-spy</code></p>
+
+<p>OR</p>
+
+<p>Add in your composer.json:</p>
+
+<div class="highlight highlight-source-json"><pre><span class="pl-s"><span class="pl-pds">"</span>require<span class="pl-pds">"</span></span>: {
+    <span class="pl-s"><span class="pl-pds">"</span>jeancsil/flight-spy<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>1.*<span class="pl-pds">"</span></span>
+}</pre></div>
+
+<p>Rename the src/Resources/parameters.yml.dist to parameters.yml. 
+Add these configurations in your parameters.yml file:</p>
+
+<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">jeancsil.flightspy.api.host:</span> <span class="pl-s"><span class="pl-pds">'</span>http://partners.api.skyscanner.net<span class="pl-pds">'</span></span>
+<span class="pl-ent">jeancsil.flightspy.api.key:</span> <span class="pl-s">YOUR_API_KEY (OPTIONAL)</span>
+<span class="pl-ent">jeancsil.flightspy.http.client.config:</span>
+    <span class="pl-ent">base_uri:</span> <span class="pl-s"><span class="pl-pds">'</span>%jeancsil.flightspy.api.host%<span class="pl-pds">'</span></span>
+    <span class="pl-ent">timeout:</span> <span class="pl-c1">30</span>
+    <span class="pl-ent">headers:</span>
+        <span class="pl-ent">Content-Type:</span> <span class="pl-s">application/x-www-form-urlencoded</span>
+        <span class="pl-ent">Accept:</span> <span class="pl-s">application/json</span>
+        <span class="pl-ent">User-Agent:</span> <span class="pl-s"><span class="pl-pds">'</span>Mozilla/5.0 (Windows NT 10.0; WOW64) (OPTIONAL)<span class="pl-pds">'</span></span></pre></div>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p>Simply run <code>./bin/flight-watcher flightspy:skyscanner:live_prices --help</code> to learn how it works.</p>
+
+<h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
+
+<p>Watch as many trips as you wish (<strong>Recommended</strong>):</p>
+
+<p><em>(see src/Resources/watch.json)</em></p>
+
+<p><code>./bin/flight-watcher flightspy:skyscanner:live_prices --file=yourWatchFile.json</code></p>
+
+<p><strong>OR</strong></p>
+
+<p>Watch a single trip:</p>
+
+<p><code>./bin/flight-watcher flightspy:skyscanner:live_prices --from=SAO-sky --to=FRA-sky --departure=2016-10-10 --arrival=2016-11-20 --country=BR --currency=BRL --locale=pt-BR --adults=2 --max-price=8000</code>.</p>
+
+<p>You might want to put it in your crontab as well. (<em>and go grab a beer!</em>)</p>
+
+<h2>
+<a id="support" class="anchor" href="#support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support</h2>
+
+<p>For general support and questions, find me on Twitter as <a href="http://twitter.com./jeancsil">@jeancsil</a>.</p>
+
+<p>Bugs and suggestions: <a href="https://github.com/jeancsil/flight-spy/issues">open a ticket</a>.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>This package is available under the <a href="LICENSE">MIT license</a>.</p>
+        </section>
+
+        <footer>
+          Flight spy is maintained by <a href="https://github.com/jeancsil">jeancsil</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
