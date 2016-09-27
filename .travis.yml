@@ -7,7 +7,6 @@ php:
 install: composer install --optimize-autoloader --no-suggest --no-interaction --prefer-source
 
 script:
-  - bin/phpunit --coverage-html reports/coverage
-  - mkdir -p reports
-  - bin/phpmd src html cleancode,codesize,controversial,design,naming,unusedcode --reportfile reports/mess_detector.html
+  - bin/phpunit
+  - bin/phpmd src html cleancode,codesize,controversial,design,naming,unusedcode
   - bin/phpcs
