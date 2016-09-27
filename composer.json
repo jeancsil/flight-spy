@@ -22,6 +22,9 @@
         "doctrine/annotations": "1.2.*",
         "wildbit/postmark-php": "2.2.*"
     },
+    "require-dev": {
+        "phpunit/phpunit": "5.5.*"
+    },
     "autoload": {
         "psr-4": {
             "Jeancsil\\FlightSpy\\": ["src", "test"]
