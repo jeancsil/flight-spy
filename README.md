@@ -22,20 +22,7 @@ Add in your composer.json:
 }
 ```
 
-Rename the src/Resources/parameters.yml.dist to parameters.yml. 
-Add these configurations in your parameters.yml file:
-
-```yaml
-jeancsil.flightspy.api.host: 'http://partners.api.skyscanner.net'
-jeancsil.flightspy.api.key: YOUR_API_KEY (OPTIONAL)
-jeancsil.flightspy.http.client.config:
-    base_uri: '%jeancsil.flightspy.api.host%'
-    timeout: 30
-    headers:
-        Content-Type: application/x-www-form-urlencoded
-        Accept: application/json
-        User-Agent: 'Mozilla/5.0 (Windows NT 10.0; WOW64) (OPTIONAL)'
-```
+Rename the src/Resources/parameters.yml.dist to parameters.yml and update the content.
 
 ## Documentation
 

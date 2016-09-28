@@ -1,8 +1,7 @@
 parameters:
     jeancsil.flightspy.api.key: 'API_KEY'
     jeancsil.flightspy.api.host: 'http://partners.api.skyscanner.net'
-    jeancsil.flightspy.email.api.key: 'YOUR_EMAL_KEY_MAILGUN'
-    jeancsil.flightspy.email.api.domainName: 'sandbox_DOMAIN.mailgun.org'
+    jeancsil.flightspy.email.api.key: 'YOUR_POSTMARK_API_KEY'
 
     jeancsil.flightspy.email.config.from: 'me@mycompany.com'
     jeancsil.flightspy.email.config.to: 'your@company.com'
