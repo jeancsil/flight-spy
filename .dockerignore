@@ -1,0 +1,5 @@
+reports/*
+vendor/pdepend
+vendor/phpmd
+vendor/phpunit
+vendor/squizlabs
