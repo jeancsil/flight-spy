@@ -5,6 +5,7 @@ use Jeancsil\FlightSpy\Command\Entity\Parameter;
 use Jeancsil\FlightSpy\Facade\MultiDealFacade;
 use Jeancsil\FlightSpy\Facade\SingleDealFacade;
 use Jeancsil\FlightSpy\Validator\ValidatorInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -154,9 +155,12 @@ class SkyscannerCommand extends ContainerAwareCommand
             $this->getMultiDeal()->process($input);
             $this->getSingleDeal()->process($input);
         } catch (\InvalidArgumentException $e) {
-            echo 'Exception caught:' . PHP_EOL,
-            $e->getMessage() . PHP_EOL,
-            $e->getFile() . ':' . $e->getLine() . PHP_EOL;
+            $this->getLogger()
+                ->critical(
+                    'Exception caught:' . PHP_EOL .
+                    $e->getMessage() . PHP_EOL .
+                    $e->getFile() . ':' . $e->getLine() . PHP_EOL
+                );
         }
     }
 
@@ -186,5 +190,15 @@ class SkyscannerCommand extends ContainerAwareCommand
     {
         return $this->getContainer()
             ->get('jeancsil_flight_spy.facade.single_deal');
+    }
+
+    /**
+     * @return LoggerInterface
+     */
+    private function getLogger()
+    {
+        return $this
+            ->getContainer()
+            ->get('jeancsil_flight_spy.logger.array_logger');
     }
 }
