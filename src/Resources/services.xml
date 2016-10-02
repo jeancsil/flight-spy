@@ -44,6 +44,9 @@
                  class="Jeancsil\FlightSpy\Api\DataTransfer\SessionParametersFactory"
                  public="true">
             <argument>%jeancsil.flightspy.api.key%</argument>
+            <call method="setLogger">
+                <argument type="service" id="jeancsil_flight_spy.logger.array_logger" />
+            </call>
         </service>
 
         <service id="jeancsil_flight_spy.api_processor.live_prices"
@@ -93,11 +96,28 @@
             <argument type="constant">Monolog\Logger::DEBUG</argument>
         </service>
 
+        <service id="jeancsil_flight_spy.logger.stdout"
+                 class="Monolog\Handler\StreamHandler">
+            <argument>php://stdout</argument>
+            <argument type="constant">Monolog\Logger::DEBUG</argument>
+        </service>
+
+        <service id="jeancsil_flight_spy.logger.array_logger"
+                 class="Jeancsil\FlightSpy\Log\ArrayLogger">
+            <argument>skyscanner</argument>
+            <call method="setLogger">
+                <argument type="service" id="jeancsil_flight_spy.logger.log" />
+            </call>
+        </service>
+
         <service id="jeancsil_flight_spy.logger.log"
                  class="Monolog\Logger">
             <argument>skyscanner</argument>
             <call method="pushHandler">
                 <argument type="service" id="jeancsil_flight_spy.logger.file" />
+            </call>
+            <call method="pushHandler">
+                <argument type="service" id="jeancsil_flight_spy.logger.stdout" />
             </call>
         </service>
     </services>
