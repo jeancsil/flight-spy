@@ -29,7 +29,6 @@ class SingleDealFacade extends AbstractDealProcessor
 
         $this->livePricePostProcessor
             ->setSessionParameters($parameters)
-            ->defineDealMaxPrice($input->getOption(Parameter::MAX_PRICE))
             ->singleProcess($response);
     }
 }

@@ -29,7 +29,6 @@ class MultiDealFacade extends AbstractDealProcessor
 
         $this->livePricePostProcessor
             ->setSessionParameters($parameters[0])
-            ->defineDealMaxPrices($this->sessionParametersFactory->getMaxPrices())
             ->multiProcess($response);
     }
 }
