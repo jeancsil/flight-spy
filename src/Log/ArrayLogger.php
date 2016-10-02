@@ -10,8 +10,6 @@ use Psr\Log\LoggerAwareTrait;
 
 class ArrayLogger extends Logger
 {
-    use LoggerAwareTrait;
-
     const COLOR_NONE = "[0m";
     const COLOR_RED = "[31m";
     const COLOR_GREEN = "[32m";
