@@ -6,10 +6,13 @@
 namespace Jeancsil\FlightSpy\Api\DataTransfer;
 
 use Jeancsil\FlightSpy\Command\Entity\Parameter;
+use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\Console\Input\InputInterface;
 
 class SessionParametersFactory
 {
+    use LoggerAwareTrait;
+
     /**
      * @var string
      */
@@ -19,11 +22,6 @@ class SessionParametersFactory
      * @var array
      */
     private $configCache;
-
-    /**
-     * @var array
-     */
-    private $maxPrices;
 
     /**
      * @param string $apiKey
@@ -44,11 +42,13 @@ class SessionParametersFactory
         $parameters = [];
         $maxPrices = [];
         foreach ($configurations as $configuration) {
-            $parameters[] = $this->createFromArray($configuration);
-            $maxPrices[] = $this->getValue(Parameter::MAX_PRICE);
-        }
+            $parameter = $this->createFromArray($configuration);
 
-        $this->maxPrices = $maxPrices;
+            $parameters[] = $parameter;
+            $maxPrices[] = $this->getValue(Parameter::MAX_PRICE);
+
+            $this->logger->debug([$parameter]);
+        }
 
         return $parameters;
     }
@@ -79,14 +79,6 @@ class SessionParametersFactory
     }
 
     /**
-     * @return array
-     */
-    public function getMaxPrices()
-    {
-        return $this->maxPrices;
-    }
-
-    /**
      * @param array $configuration
      * @return SessionParameters
      */
@@ -95,6 +87,7 @@ class SessionParametersFactory
         $this->configCache = $configuration;
 
         $parameters = new SessionParameters();
+        $parameters->setMaxPrice($this->getValue(Parameter::MAX_PRICE));
         $parameters->apiKey = $this->getValue(Parameter::API_KEY, $this->apiKey);
         $parameters->originPlace = $this->getValue(Parameter::FROM);
         $parameters->destinationPlace = $this->getValue(Parameter::TO);
