@@ -26,20 +26,80 @@ namespace Jeancsil\FlightSpy\Api\DataTransfer;
  */
 class SessionParameters
 {
+    /**
+     * @var string
+     */
     public $apiKey;
+
+    /**
+     * @var string
+     */
     public $country;
+
+    /**
+     * @var string
+     */
     public $currency;
+
+    /**
+     * @var string
+     */
     public $locale;
+
+    /**
+     * @var string
+     */
     public $originPlace;
+
+    /**
+     * @var string
+     */
     public $destinationPlace;
+
+    /**
+     * @var string
+     */
     public $outboundDate;
+
+    /**
+     * @var integer
+     */
     public $adults;
+
+    /**
+     * @var string
+     */
     public $inboundDate;
+
+    /**
+     * @var string
+     */
     public $locationSchema;
+
+    /**
+     * @var string
+     */
     public $cabinClass;
+
+    /**
+     * @var integer
+     */
     public $children;
+
+    /**
+     * @var integer
+     */
     public $infants;
+
+    /**
+     * @var bool
+     */
     public $groupPricing;
+
+    /**
+     * @var float
+     */
+    private $maxPrice;
 
     /**
      * @return array
@@ -82,5 +142,41 @@ class SessionParameters
         }
 
         return $params;
+    }
+
+    /**
+     * @return float
+     */
+    public function getMaxPrice()
+    {
+        return $this->maxPrice;
+    }
+
+    /**
+     * @param float $maxPrice
+     */
+    public function setMaxPrice($maxPrice)
+    {
+        $this->maxPrice = (float) $maxPrice;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return sprintf(
+            '%s <-> %s out %s in %s %s %s %s. Adults/Kids/Infants: %d/%d/%d',
+            $this->originPlace,
+            $this->destinationPlace,
+            (new \DateTime($this->outboundDate))->format('d.m.Y'),
+            (new \DateTime($this->inboundDate))->format('d.m.Y'),
+            $this->currency,
+            $this->maxPrice,
+            $this->groupPricing ? 'total' : 'per adult',
+            $this->adults,
+            $this->children,
+            $this->infants
+        );
     }
 }
