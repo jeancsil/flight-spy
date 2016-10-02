@@ -46,7 +46,6 @@ class LivePricePostProcessor
         $deals = [];
         for ($iteration = 0; $iteration < count($responses); $iteration++) {
             $response = $responses[$iteration];
-            $this->defineDealMaxPrice($this->maximumPrices[$iteration]);
             $deals = array_merge($deals, $this->doProcess($response));
         }
 
@@ -80,38 +79,6 @@ class LivePricePostProcessor
     }
 
     /**
-     * @param $maximumPrice
-     * @return $this
-     */
-    public function defineDealMaxPrice($maximumPrice)
-    {
-        if (!is_numeric($maximumPrice)) {
-            throw new \InvalidArgumentException(sprintf('Expecting numeric received %s', gettype($maximumPrice)));
-        }
-
-        $this->maximumPrice = $maximumPrice;
-
-        return $this;
-    }
-
-    /**
-     * @param array $maximumPrices
-     * @return $this
-     */
-    public function defineDealMaxPrices(array $maximumPrices)
-    {
-        foreach ($maximumPrices as $maximumPrice) {
-            if (!is_numeric($maximumPrice)) {
-                throw new \InvalidArgumentException(sprintf('Expecting numeric received %s', gettype($maximumPrice)));
-            }
-        }
-
-        $this->maximumPrices = $maximumPrices;
-
-        return $this;
-    }
-
-    /**
      * @param \stdClass $response
      * @return array
      */
@@ -132,8 +99,10 @@ class LivePricePostProcessor
             }
 
             $price = $this->getPrice($itinerary);
-            if ($price <= $this->maximumPrice) {
-                $this->logger->debug(sprintf("Deal found (%s)", $price));
+            if ($price <= $this->sessionParameters->getMaxPrice()) {
+                $this->logger->debug(
+                    sprintf("%sDeal found (%s)%s", chr(27) . '[1;32m', $price, chr(27) . "[0m")
+                );
 
                 $deals[] = [
                     'price' => $price,
