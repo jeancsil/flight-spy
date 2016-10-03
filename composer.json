@@ -1,6 +1,6 @@
 {
     "name": "jeancsil/flight-spy",
-    "description": "Flight prices API aggregator",
+    "description": "Watch as much flights you want and get notified for YOUR budget. (E-mail and Slack).",
     "license": "MIT",
     "authors": [
         {
