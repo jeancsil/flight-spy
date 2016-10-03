@@ -6,17 +6,19 @@
 namespace Jeancsil\FlightSpy\Api\Processor;
 
 use Jeancsil\FlightSpy\Api\DataTransfer\SessionParameters;
-use Jeancsil\FlightSpy\Notifier\Factory\EmailNotifierFactoryAwareTrait;
-use Jeancsil\FlightSpy\Notifier\NotifierAwareTrait;
+use Jeancsil\FlightSpy\Notifier\NotifiableInterface;
 use Psr\Log\LoggerAwareTrait;
 
 class LivePricePostProcessor
 {
-    use NotifierAwareTrait;
-    use EmailNotifierFactoryAwareTrait;
     use LoggerAwareTrait;
 
     const MAX_PARSED_DEALS = 5;
+
+    /**
+     * @var NotifiableInterface[]
+     */
+    private $notifiers = [];
 
     /**
      * @var SessionParameters
@@ -29,19 +31,30 @@ class LivePricePostProcessor
     private $agents = [];
 
     /**
+     * @param \Jeancsil\FlightSpy\Notifier\NotifiableInterface $notifier
+     */
+    public function addNotifier(NotifiableInterface $notifier)
+    {
+        $this->notifiers[] = $notifier;
+    }
+
+    public function notifyAll(array $deals) {
+        foreach ($this->notifiers as $notifier) {
+            $notifier->notify($deals, $this->sessionParameters);
+        }
+    }
+
+    /**
      * @param array $responses
      */
     public function multiProcess(array $responses)
     {
         $deals = [];
-        for ($iteration = 0; $iteration < count($responses); $iteration++) {
-            $response = $responses[$iteration];
+        foreach ($responses as $response) {
             $deals = array_merge($deals, $this->doProcess($response));
         }
 
-        $this->notifier->notify(
-            $this->emailNotifierFactory->createNotification($deals, $this->sessionParameters)
-        );
+        $this->notifyAll($deals);
     }
 
     /**
@@ -49,12 +62,7 @@ class LivePricePostProcessor
      */
     public function singleProcess(\stdClass $response)
     {
-        $this->notifier->notify(
-            $this->emailNotifierFactory->createNotification(
-                $this->doProcess($response),
-                $this->sessionParameters
-            )
-        );
+        $this->notifyAll($this->doProcess($response));
     }
 
     /**
