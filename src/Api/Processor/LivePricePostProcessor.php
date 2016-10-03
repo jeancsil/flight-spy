@@ -38,7 +38,11 @@ class LivePricePostProcessor
         $this->notifiers[] = $notifier;
     }
 
-    public function notifyAll(array $deals) {
+    /**
+     * @param array $deals
+     */
+    public function notifyAll(array $deals)
+    {
         foreach ($this->notifiers as $notifier) {
             $notifier->notify($deals, $this->sessionParameters);
         }
