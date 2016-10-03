@@ -6,8 +6,14 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jeancsil/flight-spy/master/LICENSE) [![Twitter](https://img.shields.io/twitter/url/https/github.com/jeancsil/flight-spy.svg?style=social)](https://twitter.com/intent/tweet?text=Watch the best fare for your next trip!&url=http://github.com%2Fjeancsil%2Fflight-spy)
 
 
-Provides commands to watch flight deals for you!
+Watch as much flights you want and get notified for YOUR budget.
+Currently by E-mail and/or Slack.
 
+###Notification channels:
+
+[![Slack](https://raw.githubusercontent.com/jeancsil/flight-spy/master/src/Resources/slack.png)](https://slack.com/)
+
+[![Postmark](https://raw.githubusercontent.com/jeancsil/flight-spy/master/src/Resources/postmark.png)](https://postmarkapp.com/)
 
 ## Install with docker (recommended)
 Rename the `src/Resources/parameters.yml.dist` to `parameters.yml` and update the content accordingly.
