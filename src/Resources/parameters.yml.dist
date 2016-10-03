@@ -4,6 +4,7 @@ parameters:
     jeancsil.flightspy.api.key: 'API_KEY'
     jeancsil.flightspy.email.api.key: 'YOUR_POSTMARK_API_KEY'
     jeancsil.flightspy.api.host: 'http://partners.api.skyscanner.net'
+    jeancsil.flightspy.slack.webhook.url: 'https://hooks.slack.com/services/xxx/xxx/xxx'
 
     jeancsil.flightspy.email.config.from: 'me@mycompany.com'
     jeancsil.flightspy.email.config.to: 'your@company.com'
