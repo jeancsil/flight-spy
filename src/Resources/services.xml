@@ -4,6 +4,10 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <imports>
+        <import resource="config/notifiers.xml"/>
+    </imports>
+
     <services>
         <service id="jeancsil_flight_spy.facade.deal_processor"
                  class="Jeancsil\FlightSpy\Facade\AbstractDealProcessor"
@@ -53,33 +57,15 @@
                  class="Jeancsil\FlightSpy\Api\Processor\LivePricePostProcessor"
                  public="true">
             <argument>%jeancsil.flightspy.email.config.html%</argument>
-            <call method="setNotifier">
+            <call method="addNotifier">
                 <argument type="service" id="jeancsil_flight_spy.notifier.email" />
             </call>
-            <call method="setEmailNotifierFactory">
-                <argument type="service" id="jeancsil_flight_spy.notifier.factory.email" />
+            <call method="addNotifier">
+                <argument type="service" id="jeancsil_flight_spy.notifier.slack" />
             </call>
             <call method="setLogger">
                 <argument type="service" id="jeancsil_flight_spy.logger.log" />
             </call>
-        </service>
-
-        <service id="jeancsil_flight_spy.notifier.email"
-                 class="Jeancsil\FlightSpy\Notifier\EmailNotifier">
-            <argument type="service" id="jeancsil_flight_spy.mailer.postmark" />
-        </service>
-
-        <service id="jeancsil_flight_spy.mailer.postmark"
-                 class="Postmark\PostmarkClient">
-            <argument>%jeancsil.flightspy.email.api.key%</argument>
-        </service>
-
-        <service id="jeancsil_flight_spy.notifier.factory.email"
-                 class="Jeancsil\FlightSpy\Notifier\Factory\EmailNotifierFactory">
-            <argument>%jeancsil.flightspy.email.config.from%</argument>
-            <argument>%jeancsil.flightspy.email.config.to%</argument>
-            <argument>%jeancsil.flightspy.email.config.subject%</argument>
-            <argument>%jeancsil.flightspy.email.config.html%</argument>
         </service>
 
         <!-- Guzzle -->

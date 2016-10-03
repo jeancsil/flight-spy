@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Slack -->
+        <service id="jeancsil_flight_spy.notifier.slack"
+                 class="Jeancsil\FlightSpy\Notifier\Slack\Notifier">
+            <argument type="service" id="jeancsil_flight_spy.slack.client" />
+        </service>
+
+        <service id="jeancsil_flight_spy.slack.client" class="Maknz\Slack\Client">
+            <argument>%jeancsil.flightspy.slack.webhook.url%</argument>
+            <argument type="collection">
+                <argument key="username">Flight Spy</argument>
+                <argument key="link_names">true</argument>
+            </argument>
+        </service>
+
+        <!-- Email (Postmark) -->
+        <service id="jeancsil_flight_spy.notifier.email"
+                 class="Jeancsil\FlightSpy\Notifier\Email\Notifier">
+            <argument type="service" id="jeancsil_flight_spy.mailer.postmark" />
+            <argument>%jeancsil.flightspy.email.config.from%</argument>
+            <argument>%jeancsil.flightspy.email.config.to%</argument>
+            <argument>%jeancsil.flightspy.email.config.subject%</argument>
+            <argument>%jeancsil.flightspy.email.config.html%</argument>
+        </service>
+
+        <service id="jeancsil_flight_spy.mailer.postmark"
+                 class="Postmark\PostmarkClient">
+            <argument>%jeancsil.flightspy.email.api.key%</argument>
+        </service>
+    </services>
+</container>
