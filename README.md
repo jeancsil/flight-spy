@@ -17,9 +17,9 @@ Currently by E-mail and/or Slack.
 [![Postmark](https://raw.githubusercontent.com/jeancsil/flight-spy/master/src/Resources/postmark.png)](https://postmarkapp.com/)
 
 ## Install with docker (recommended)
-Rename the `src/Resources/parameters.yml.dist` to `parameters.yml` and update the content accordingly.
-
-Change the `src/Resources/watch.json` file with all the flights, dates, budged etc.. you are looking for.
+Rename the `src/Resources/parameters.yml.dist` to `src/Resources/parameters.yml` and update the content with your data.
+Copy the `src/Resources/watch.json` to `src/watch.json` and add how many flights you wish to track.
+In this file you will put all the flights information like dates, budged, number of adults, kids etc...
 
 `$ git clone https://github.com/jeancsil/flight-spy.git`
 
