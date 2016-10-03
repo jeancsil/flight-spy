@@ -1,4 +1,4 @@
-# Flight Spy
+# FlightSpy
 [![Flight Spy](http://business.skyscanner.net/Content/images/logo/ssf-white-color.png)](http://www.skyscanner.net)
 
 [![Build Status](https://travis-ci.org/jeancsil/flight-spy.svg?branch=master)](https://travis-ci.org/jeancsil/flight-spy)
@@ -9,40 +9,20 @@
 Provides console commands to keep watching flight deals for you!
 
 
-## Install
-`composer require jeancsil/flight-spy`
+## Install with docker (recommended)
+Rename the `src/Resources/parameters.yml.dist` to `parameters.yml` and update the content accordingly.
 
-OR
+Change the `src/Resources/watch.json` file with all the flights, dates, budged etc.. you are looking for.
 
-Add in your composer.json:
+`$ git clone https://github.com/jeancsil/flight-spy.git`
 
-```json
-"require": {
-    "jeancsil/flight-spy": "1.*"
-}
-```
+`$ docker build -t jeancsil/flight-spy .`
 
-Rename the src/Resources/parameters.yml.dist to parameters.yml and update the content.
+`$ docker run -t -i jeancsil/flight-spy`
 
 ## Documentation
 
-Simply run `./bin/flight-watcher flightspy:skyscanner:live_prices --help` to learn how it works.
-
-## Examples
-
-Watch as many trips as you wish (**Recommended**):
-
-*(see src/Resources/watch.json)*
-
-`./bin/flight-watcher flightspy:skyscanner:live_prices --file=yourWatchFile.json`
-
-**OR**
-
-Watch a single trip:
-
-`./bin/flight-watcher flightspy:skyscanner:live_prices --from=SAO-sky --to=FRA-sky --departure=2016-10-10 --arrival=2016-11-20 --country=BR --currency=BRL --locale=pt-BR --adults=2 --max-price=8000`.
-
-You might want to put it in your crontab as well. (*and go grab a beer!*)
+FlightSpy will look for the best deals for you from 5 to 5 minutes and will let you know by e-mail if there is a good fare for you next trip!
 
 ## Support
 
