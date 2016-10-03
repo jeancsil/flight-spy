@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-
 COMPOSER=`which composer`
 MUST_INSTALL=$?
 
@@ -21,9 +19,5 @@ if [ "$MUST_INSTALL" != 0 ]; then
         exit 1
     fi
 fi
-
-#adduser --disabled-password --gecos '' r
-#adduser r sudo
-#echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 su -c "cd /flight-spy/ && $COMPOSER install --no-plugins --no-scripts --optimize-autoloader --no-suggest --no-interaction --no-dev --prefer-dist"
