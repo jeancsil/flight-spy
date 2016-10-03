@@ -1,1 +1,1 @@
-* * * * * root /usr/local/bin/php /flight-spy/bin/flight-watcher flightspy:skyscanner:live_prices --file=/flight-spy/watch.json >> /var/log/cron.log 2>&1
+*/5 * * * * root /usr/local/bin/php /flight-spy/bin/flight-watcher flightspy:skyscanner:live_prices --file=/flight-spy/watch.json >> /var/log/cron.log 2>&1
