@@ -3,7 +3,9 @@
  * @author Jean Silva <me@jeancsil.com>
  * @license MIT
  */
-namespace Jeancsil\FlightSpy\Notifier;
+namespace Jeancsil\FlightSpy\Notifier\Email;
+
+use Jeancsil\FlightSpy\Notifier\Notification;
 
 class EmailNotification implements Notification
 {
