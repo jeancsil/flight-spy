@@ -3,7 +3,7 @@ FROM php
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
-    && apt-get install -y vim cron wget zip unzip \
+    && apt-get install -y vim cron wget zip unzip git \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
