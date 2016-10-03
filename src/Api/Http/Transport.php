@@ -87,8 +87,8 @@ class Transport
     }
 
     /**
-     * @param $url
-     * @param $apiKey
+     * @param string $url
+     * @param string $apiKey
      */
     private function setPollUrl($url, $apiKey)
     {

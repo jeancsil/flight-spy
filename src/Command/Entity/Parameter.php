@@ -10,7 +10,7 @@ class Parameter
     const FILE = 'file';
     const FROM = 'from';
     const TO = 'to';
-    const DEPARTURE_DATE= 'departure';
+    const DEPARTURE_DATE = 'departure';
     const RETURN_DATE = 'arrival';
     const MAX_PRICE = 'max-price';
     const API_KEY = 'api-key';

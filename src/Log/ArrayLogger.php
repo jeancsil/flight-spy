@@ -73,6 +73,6 @@ class ArrayLogger extends Logger
 
     private function format($message, $color = self::COLOR_GREEN)
     {
-        return chr(27) . "$color$message" . chr(27). self::COLOR_NONE;
+        return chr(27) . "$color$message" . chr(27) . self::COLOR_NONE;
     }
 }

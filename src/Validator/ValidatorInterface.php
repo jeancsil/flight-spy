@@ -9,12 +9,13 @@ interface ValidatorInterface
 {
     /**
      * @param $instance
-     * @return $this
+     * @return \Jeancsil\FlightSpy\Validator\ValidatorInterface
      */
     public function setTarget($instance);
 
     /**
      * @throw ValidationException
+     * @return void
      */
     public function validate();
 }

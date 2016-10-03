@@ -93,7 +93,7 @@ class LivePricePostProcessor
         $deals = [];
         $resultCount = 1;
         foreach ($cheaperItineraries as $itinerary) {
-            $this->logger->debug('Verifying itinerary #'. $resultCount++);
+            $this->logger->debug('Verifying itinerary #' . $resultCount++);
 
             if (!isset($itinerary->PricingOptions[0])) {
                 $this->logger->debug('No PricingOptions found.');

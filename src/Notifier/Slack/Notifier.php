@@ -63,7 +63,7 @@ class Notifier implements NotifiableInterface
         foreach ($deals as $deal) {
             $deal = (object) $deal;
             $message .= '_' . $deal->agent . '_ ';
-            $message .= '*' . $parameters->currency . ' ' .  number_format($deal->price) . '* ';
+            $message .= '*' . $parameters->currency . ' ' . number_format($deal->price) . '* ';
 
             if ($deal->deepLinkUrl) {
                 $message .= "<$deal->deepLinkUrl|buy>" . PHP_EOL;
