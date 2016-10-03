@@ -27,6 +27,10 @@ class Notifier implements NotifiableInterface
      */
     public function notify(array $deals, SessionParameters $sessionParameters)
     {
+        if (empty($deals)) {
+            return;
+        }
+
         $notification = $this->createNotification($deals, $sessionParameters);
 
         $this->slackClient
