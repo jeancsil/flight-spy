@@ -24,16 +24,6 @@ class LivePricePostProcessor
     private $sessionParameters;
 
     /**
-     * @var float
-     */
-    private $maximumPrice;
-
-    /**
-     * @var float
-     */
-    private $maximumPrices;
-
-    /**
      * @var array
      */
     private $agents = [];
