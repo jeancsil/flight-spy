@@ -70,5 +70,5 @@ build:
             -
                 command: './bin/phpunit --coverage-clover=phpunit-clover'
                 coverage:
-                    file: 'coverage-clover'
+                    file: './coverage-clover'
                     format: 'clover'
