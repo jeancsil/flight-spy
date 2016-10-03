@@ -1,7 +1,9 @@
 parameters:
+#   Create a free account to get your API access http://en.business.skyscanner.net/en-gb/products/travel-apis/
+#   Create a free account at https://postmarkapp.com/ for sending e-mails
     jeancsil.flightspy.api.key: 'API_KEY'
-    jeancsil.flightspy.api.host: 'http://partners.api.skyscanner.net'
     jeancsil.flightspy.email.api.key: 'YOUR_POSTMARK_API_KEY'
+    jeancsil.flightspy.api.host: 'http://partners.api.skyscanner.net'
 
     jeancsil.flightspy.email.config.from: 'me@mycompany.com'
     jeancsil.flightspy.email.config.to: 'your@company.com'
