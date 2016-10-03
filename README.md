@@ -29,7 +29,7 @@ Change the `src/Resources/watch.json` file with all the flights, dates, budged e
 
 ## Documentation
 
-FlightSpy will look for the best deals for you from 5 to 5 minutes and will let you know by e-mail if there is a good fare for you next trip!
+FlightSpy will look for the best deals for you from 5 to 5 minutes and will let you know by e-mail AND/OR Slack if there is a good fare for you next trip!
 
 ## Support
 
