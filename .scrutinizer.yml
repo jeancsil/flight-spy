@@ -1,0 +1,19 @@
+filter:
+    excluded_paths:
+        - 'bin/*'
+        - 'test/*'
+checks:
+    php: true
+coding_style:
+    php:
+        spaces:
+            around_operators:
+                concatenation: true
+build:
+    environment:
+        php:
+            version: 7.0
+    tests:
+        override:
+            - ./bin/phpunit
+            - ./bin/phpcs
