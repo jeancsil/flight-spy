@@ -18,7 +18,8 @@ Currently by E-mail and/or Slack.
 
 ## Install with docker (recommended)
 Rename the `src/Resources/parameters.yml.dist` to `src/Resources/parameters.yml` and update the content with your data.
-Copy the `src/Resources/watch.json` to `src/watch.json` and add how many flights you wish to track.
+
+Copy the `src/Resources/watch.json` to `/watch.json` and add how many flights you wish to track.
 In this file you will put all the flights information like dates, budged, number of adults, kids etc...
 
 `$ git clone https://github.com/jeancsil/flight-spy.git`
