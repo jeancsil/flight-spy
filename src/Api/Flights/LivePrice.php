@@ -33,7 +33,7 @@ class LivePrice
                 throw new \LogicException(sprintf('Instance of SessionParameters need. Given %s.', $parameter));
             }
 
-            $response[] = $this->transport->findQuotes($parameter);
+            $response[] = $this->getDeals($parameter);
         }
 
         return $response;
