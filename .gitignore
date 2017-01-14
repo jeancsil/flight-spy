@@ -1,5 +1,6 @@
 /bin/p*
 .idea
+.DS_Store
 vendor
 reports
 src/Resources/parameters.yml
