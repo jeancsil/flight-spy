@@ -8,9 +8,12 @@ namespace Jeancsil\FlightSpy\Api\Http;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use Jeancsil\FlightSpy\Api\DataTransfer\SessionParameters;
+use Psr\Log\LoggerAwareTrait;
 
 class Transport
 {
+    use LoggerAwareTrait;
+
     const LIVE_PRICING = '/apiservices/pricing/v1.0';
 
     /**
@@ -33,11 +36,14 @@ class Transport
 
     /**
      * @param SessionParameters $parameters
+     * @param bool $newSession
      * @return array
      */
-    public function findQuotes(SessionParameters $parameters)
+    public function findQuotes(SessionParameters $parameters, $newSession)
     {
-        $this->createSession($parameters);
+        if ($newSession) {
+            $this->createSession($parameters);
+        }
 
         return $this->poll();
     }
@@ -62,8 +68,15 @@ class Transport
             $this->setPollUrl($request->getHeaders()['Location'][0], $parametersArray['apiKey']);
             sleep(1);
         } catch (BadResponseException $e) {
-            echo "createSession::BadResponseException: " . $e->getMessage();
-            die;
+            $this->logger->error(
+                sprintf(
+                    "[Transport::createSession]\nStatusCode: %d\nBody: %s",
+                    $e->getResponse()->getStatusCode(),
+                    $e->getResponse()->getBody()
+                )
+            );
+
+            throw $e;
         }
     }
 
@@ -77,12 +90,15 @@ class Transport
                 ->client
                 ->get($this->pollUrl);
 
-            //TODO FIXME
             return \GuzzleHttp\json_decode($request->getBody()->getContents());
         } catch (BadResponseException $e) {
-            echo "pool::BadResponseException:";
-            print_r($e->getResponse());
-            die;
+            $this->logger->error(
+                sprintf(
+                    "[Transport::pool]\nStatusCode: %d\nBody: %s",
+                    $e->getResponse()->getStatusCode(),
+                    $e->getResponse()->getBody()
+                )
+            );
         }
     }
 
@@ -93,5 +109,6 @@ class Transport
     private function setPollUrl($url, $apiKey)
     {
         $this->pollUrl = "$url?apiKey=$apiKey&sorttype=price&sortorder=desc";
+        $this->logger->debug("Pool url is: $this->pollUrl");
     }
 }

@@ -6,7 +6,6 @@
 namespace Jeancsil\FlightSpy\Log;
 
 use Monolog\Logger;
-use Psr\Log\LoggerAwareTrait;
 
 class ArrayLogger extends Logger
 {

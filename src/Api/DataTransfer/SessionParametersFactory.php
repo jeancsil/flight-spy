@@ -42,12 +42,9 @@ class SessionParametersFactory
         $parameters = [];
         $maxPrices = [];
         foreach ($configurations as $configuration) {
-            $parameter = $this->createFromArray($configuration);
-
-            $parameters[] = $parameter;
+            $parameters = $this->createFromArray($configuration);
             $maxPrices[] = $this->getValue(Parameter::MAX_PRICE);
-
-            $this->logger->debug([$parameter]);
+            $this->logger->debug($parameters);
         }
 
         return $parameters;
@@ -80,19 +77,48 @@ class SessionParametersFactory
 
     /**
      * @param array $configuration
-     * @return SessionParameters
+     * @return SessionParameters[]
      */
     private function createFromArray(array $configuration)
     {
         $this->configCache = $configuration;
+        $parameters = [];
 
+        if ($this->shouldCreateAllPossiblePeriods()) {
+            $dateCombinations = $this->getPeriod()->generateDateCombinations();
+
+            foreach ($dateCombinations as $combination) {
+                $parameters[] = $this->createSessionParameters(
+                    $combination['outboundDate'],
+                    $combination['inboundDate']
+                );
+            }
+
+            return $parameters;
+        }
+
+        $parameters[] = $this->createSessionParameters(
+            $this->getValue(Parameter::DEPARTURE_DATE),
+            $this->getValue(Parameter::RETURN_DATE)
+        );
+
+        return $parameters;
+    }
+
+    /**
+     * @param $outboundDate
+     * @param $inboundDate
+     * @return SessionParameters
+     */
+    private function createSessionParameters($outboundDate, $inboundDate)
+    {
         $parameters = new SessionParameters();
         $parameters->setMaxPrice($this->getValue(Parameter::MAX_PRICE));
         $parameters->apiKey = $this->getValue(Parameter::API_KEY, $this->apiKey);
         $parameters->originPlace = $this->getValue(Parameter::FROM);
         $parameters->destinationPlace = $this->getValue(Parameter::TO);
-        $parameters->outboundDate = $this->getValue(Parameter::DEPARTURE_DATE);
-        $parameters->inboundDate = $this->getValue(Parameter::RETURN_DATE);
+        $parameters->outboundDate = $outboundDate;
+        $parameters->inboundDate = $inboundDate;
         $parameters->locationSchema = $this->getValue(Parameter::LOCATION_SCHEMA, Parameter::DEFAULT_LOCATION_SCHEMA);
         $parameters->country = $this->getValue(Parameter::COUNTRY);
         $parameters->currency = $this->getValue(Parameter::CURRENCY);
@@ -104,6 +130,37 @@ class SessionParametersFactory
         $parameters->groupPricing = $this->getValue(Parameter::GROUP_PRICING, Parameter::DEFAULT_GROUP_PRICING);
 
         return $parameters;
+    }
+
+    /**
+     * @return Period
+     */
+    private function getPeriod()
+    {
+        return new Period(
+            $this->configCache[Parameter::SEARCH_PERIOD_TRAVEL_DAYS],
+            new \DateTime($this->configCache[Parameter::SEARCH_PERIOD_FROM]),
+            new \DateTime($this->configCache[Parameter::SEARCH_PERIOD_TO])
+        );
+    }
+
+    /**
+     * @return bool
+     */
+    private function shouldCreateAllPossiblePeriods() {
+        if (!isset($this->configCache[Parameter::SEARCH_PERIOD_FROM])) {
+            return false;
+        }
+
+        if (!isset($this->configCache[Parameter::SEARCH_PERIOD_TO])) {
+            return false;
+        }
+
+        if (!isset($this->configCache[Parameter::SEARCH_PERIOD_TRAVEL_DAYS])) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

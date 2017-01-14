@@ -42,6 +42,9 @@
                  class="Jeancsil\FlightSpy\Api\Http\Transport"
                  public="true">
             <argument type="service" id="jeancsil_flight_spy.http_client" />
+            <call method="setLogger">
+                <argument type="service" id="jeancsil_flight_spy.logger.log" />
+            </call>
         </service>
 
         <service id="jeancsil_flight_spy.api_data_transfer.session_parameters_factory"

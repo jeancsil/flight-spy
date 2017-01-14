@@ -14,26 +14,30 @@ class LivePrice
 
     /**
      * @param SessionParameters $parameters
+     * @param bool $newSession
      * @return array
      */
-    public function getDeals(SessionParameters $parameters)
+    public function getDeals(SessionParameters $parameters, $newSession)
     {
-        return $this->transport->findQuotes($parameters);
+        return $this->transport->findQuotes($parameters, $newSession);
     }
 
     /**
-     * @param array $parameters
+     * @param array $sessionParameters
      * @return array
      */
-    public function getMultiDeals(array $parameters)
+    public function getMultiDeals(array $sessionParameters)
     {
         $response = [];
-        foreach ($parameters as $parameter) {
-            if (!$parameter instanceof SessionParameters) {
-                throw new \LogicException(sprintf('Instance of SessionParameters need. Given %s.', $parameter));
+        static $requests = 0;
+        foreach ($sessionParameters as $sessionParameter) {
+            if (!$sessionParameter instanceof SessionParameters) {
+                throw new \LogicException(sprintf('Instance of SessionParameters need. Given %s.', $sessionParameter));
             }
 
-            $response[] = $this->getDeals($parameter);
+            $newSession = ($requests % 20) == 0;
+            $response[] = $this->getDeals($sessionParameter, $newSession);
+            $requests++;
         }
 
         return $response;

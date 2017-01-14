@@ -25,6 +25,11 @@ class Period
     private $dateTo;
 
     /**
+     * @var ArrayCollection
+     */
+    private $combinations;
+
+    /**
      * @param int $durationInDays
      * @param \Datetime $dateFrom
      * @param \Datetime $dateTo
@@ -34,6 +39,7 @@ class Period
         $this->durationInDays = $durationInDays;
         $this->dateFrom = $dateFrom;
         $this->dateTo = $dateTo;
+        $this->combinations = new ArrayCollection();
     }
 
     /**
@@ -41,20 +47,19 @@ class Period
      */
     public function generateDateCombinations()
     {
-        $combinations = new ArrayCollection();
         $possibleDays = $this->dateFrom->diff($this->dateTo)->days;
 
         $initialDate = clone $this->dateFrom;
         $endDate = clone $this->dateFrom->add(new \DateInterval(sprintf('P%dD', $this->durationInDays)));
 
         for ($i = 0; $i < $possibleDays; $i++) {
-            $combinations->add([
-                'from' => clone $initialDate,
-                'to' => clone $endDate
+            $this->combinations->add([
+                'outboundDate' => $initialDate->format('Y-m-d'),
+                'inboundDate' => $endDate->format('Y-m-d')
             ]);
 
             if ($endDate->diff($this->dateTo)->days == 0) {
-                return $combinations;
+                return $this->combinations;
             }
 
             $initialDate->add($this->getOneDayMore());
@@ -84,6 +89,28 @@ class Period
     public function getDateTo()
     {
         return $this->dateTo;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        $string = sprintf(
+            "Duration: %d days\nBetween %s and %s (inclusive)",
+            $this->durationInDays,
+            $this->dateFrom->format('d/m/Y'),
+            $this->dateTo->format('d/m/Y')
+        );
+
+        if (!$this->combinations->isEmpty()) {
+            $string .= sprintf(
+                "\nResulted in these combinations:\n %s",
+                var_export($this->combinations->toArray(), true)
+            );
+        }
+
+        return $string;
     }
 
     /**

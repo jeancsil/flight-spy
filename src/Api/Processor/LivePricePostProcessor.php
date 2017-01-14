@@ -55,6 +55,11 @@ class LivePricePostProcessor
     {
         $deals = [];
         foreach ($responses as $response) {
+            if (!$response) {
+                $this->logger->warning('Empty response received...');
+                continue;
+            }
+
             $deals = array_merge($deals, $this->doProcess($response));
         }
 
@@ -70,12 +75,12 @@ class LivePricePostProcessor
     }
 
     /**
-     * @param SessionParameters $parameters
+     * @param SessionParameters $sessionParameters
      * @return $this
      */
-    public function setSessionParameters(SessionParameters $parameters)
+    public function setSessionParameters(SessionParameters $sessionParameters)
     {
-        $this->sessionParameters = $parameters;
+        $this->sessionParameters = $sessionParameters;
 
         return $this;
     }
@@ -87,31 +92,34 @@ class LivePricePostProcessor
     private function doProcess(\stdClass $response)
     {
         $itineraries = $response->Itineraries;
-        $cheaperItineraries = array_slice($itineraries, 0, static::MAX_PARSED_DEALS);
+        $cheapestItineraries = array_slice($itineraries, 0, static::MAX_PARSED_DEALS);
         $this->agents = $response->Agents;
 
         $deals = [];
         $resultCount = 1;
-        foreach ($cheaperItineraries as $itinerary) {
-            $this->logger->debug('Verifying itinerary #' . $resultCount++);
+        foreach ($cheapestItineraries as $itinerary) {
+            $logMessage = sprintf('Verifying itinerary #%s: ', $resultCount++);
 
             if (!isset($itinerary->PricingOptions[0])) {
-                $this->logger->debug('No PricingOptions found.');
+                $this->logger->error('No PricingOptions found.');
                 continue;
             }
 
             $price = $this->getPrice($itinerary);
             if ($price <= $this->sessionParameters->getMaxPrice()) {
-                $this->logger->debug(
-                    sprintf("%sDeal found (%s)%s", chr(27) . '[1;32m', $price, chr(27) . "[0m")
-                );
+                $logMessage .= sprintf("%sDeal found (%s)%s", chr(27) . '[1;32m', $price, chr(27) . "[0m");
 
                 $deals[] = [
                     'price' => $price,
                     'agent' => $this->getAgentName($itinerary),
                     'deepLinkUrl' => $this->getDeepLinkUrl($itinerary)
                 ];
+
+                $this->logger->debug($logMessage);
                 continue;
+            } else {
+                $logMessage .= sprintf("%sNot a Deal(%s)%s", chr(27) . '[1;37m', $price, chr(27) . "[0m");
+                $this->logger->debug($logMessage);
             }
         }
 

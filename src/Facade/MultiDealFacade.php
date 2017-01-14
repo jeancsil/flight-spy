@@ -19,16 +19,16 @@ class MultiDealFacade extends AbstractDealProcessor
             return;
         }
 
-        $parameters = $this
+        $sessionParameters = $this
             ->sessionParametersFactory
             ->createFromConfigFile($configFile);
 
-        if (!$response = $this->livePricesApi->getMultiDeals($parameters)) {
+        if (!$response = $this->livePricesApi->getMultiDeals($sessionParameters)) {
             return;
         }
 
         $this->livePricePostProcessor
-            ->setSessionParameters($parameters[0])
+            ->setSessionParameters($sessionParameters[0])
             ->multiProcess($response);
     }
 }

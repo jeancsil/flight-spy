@@ -12,6 +12,9 @@ class Parameter
     const TO = 'to';
     const DEPARTURE_DATE = 'departure';
     const RETURN_DATE = 'arrival';
+    const SEARCH_PERIOD_FROM = 'search-period-from';
+    const SEARCH_PERIOD_TO = 'search-period-to';
+    const SEARCH_PERIOD_TRAVEL_DAYS = 'search-period-travel-days';
     const MAX_PRICE = 'max-price';
     const API_KEY = 'api-key';
     const LOCATION_SCHEMA = 'location-schema';

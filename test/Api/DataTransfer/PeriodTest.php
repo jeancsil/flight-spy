@@ -27,8 +27,8 @@ class PeriodTest extends \PHPUnit_Framework_TestCase
             /** @var \DateTime $expectedDateTo */
             $expectedDateTo = $expected[$count][1];
 
-            $this->assertEquals($expectedDateFrom, $combination['from']);
-            $this->assertEquals($expectedDateTo, $combination['to']);
+            $this->assertEquals($expectedDateFrom->format('YYYY-mm-dd'), $combination['outboundDate']);
+            $this->assertEquals($expectedDateTo->format('YYYY-mm-dd'), $combination['inboundDate']);
 
             $count++;
         }
