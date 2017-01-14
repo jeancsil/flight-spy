@@ -147,7 +147,8 @@ class SessionParametersFactory
     /**
      * @return bool
      */
-    private function shouldCreateAllPossiblePeriods() {
+    private function shouldCreateAllPossiblePeriods()
+    {
         if (!isset($this->configCache[Parameter::SEARCH_PERIOD_FROM])) {
             return false;
         }

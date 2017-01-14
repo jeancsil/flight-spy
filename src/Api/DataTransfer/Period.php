@@ -116,7 +116,8 @@ class Period
     /**
      * @return \DateInterval
      */
-    private function getOneDayMore() {
+    private function getOneDayMore()
+    {
         return new \DateInterval('P1D');
     }
 }
