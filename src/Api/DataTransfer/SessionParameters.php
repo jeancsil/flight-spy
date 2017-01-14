@@ -22,7 +22,6 @@ namespace Jeancsil\FlightSpy\Api\DataTransfer;
  * adults    Yes    The number of adults    Int    Defaults to 1 if not specified. Maximum 8
  * children    No    The number of children    Int    Defaults to 0, maximum 8
  * infants    No    The number of infants    Int    Defaults to 0, cannot exceed adults
- * groupPricing    No    Show price-per-adult (false), or price for all passengers (true)    bool    Defaults to false
  */
 class SessionParameters
 {
@@ -92,11 +91,6 @@ class SessionParameters
     public $infants;
 
     /**
-     * @var bool
-     */
-    public $groupPricing;
-
-    /**
      * @var float
      */
     private $maxPrice;
@@ -137,10 +131,6 @@ class SessionParameters
             $params['children'] = $this->children;
         }
 
-        if ($this->groupPricing) {
-            $params['groupPricing'] = $this->groupPricing;
-        }
-
         return $params;
     }
 
@@ -166,14 +156,13 @@ class SessionParameters
     public function __toString()
     {
         return sprintf(
-            '%s <-> %s out %s in %s %s %s %s. Adults/Kids/Infants: %d/%d/%d',
+            '%s <-> %s out %s in %s %s %s. Adults/Kids/Infants: %d/%d/%d',
             $this->originPlace,
             $this->destinationPlace,
             (new \DateTime($this->outboundDate))->format('d.m.Y'),
             (new \DateTime($this->inboundDate))->format('d.m.Y'),
             $this->currency,
             $this->maxPrice,
-            $this->groupPricing ? 'total' : 'per adult',
             $this->adults,
             $this->children,
             $this->infants

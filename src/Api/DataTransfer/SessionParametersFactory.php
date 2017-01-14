@@ -70,7 +70,6 @@ class SessionParametersFactory
         $parameters->cabinClass = $input->getOption(Parameter::CABIN_CLASS);
         $parameters->children = $input->getOption(Parameter::CHILDREN);
         $parameters->infants = $input->getOption(Parameter::INFANTS);
-        $parameters->groupPricing = $input->getOption(Parameter::GROUP_PRICING);
 
         return $parameters;
     }
@@ -127,7 +126,6 @@ class SessionParametersFactory
         $parameters->cabinClass = $this->getValue(Parameter::CABIN_CLASS, Parameter::DEFAULT_CABIN_CLASS);
         $parameters->children = $this->getValue(Parameter::CHILDREN, Parameter::DEFAULT_CHILDREN);
         $parameters->infants = $this->getValue(Parameter::INFANTS, Parameter::DEFAULT_INFANTS);
-        $parameters->groupPricing = $this->getValue(Parameter::GROUP_PRICING, Parameter::DEFAULT_GROUP_PRICING);
 
         return $parameters;
     }
