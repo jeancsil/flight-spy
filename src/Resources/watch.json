@@ -24,5 +24,18 @@
     "currency": "BRL",
     "locale": "pt-BR",
     "adults": "2"
+  },
+  {
+    "from": "DUS-sky",
+    "to": "FLN-sky",
+    "search-period-from": "2017-07-15",
+    "search-period-to": "2017-08-28",
+    "search-period-travel-days": 20,
+    "max-price": "2500",
+    "currency": "EUR",
+    "country": "DE",
+    "locale": "de-DE",
+    "adults": "2",
+    "children": "2"
   }
 ]
