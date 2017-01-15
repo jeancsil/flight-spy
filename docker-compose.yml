@@ -1,7 +1,5 @@
 app:
   build: .
-  ports:
-    - "9000:9000"
   links:
     - elasticsearch:elasticsearch
 

@@ -28,6 +28,7 @@
         "monolog/monolog": "^1.21",
         "doctrine/annotations": "1.2.*",
         "doctrine/common": "2.7.2",
+        "elasticsearch/elasticsearch": "~5.0",
         "wildbit/postmark-php": "2.2.*",
         "maknz/slack": "~1.7"
     },

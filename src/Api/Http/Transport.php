@@ -8,11 +8,13 @@ namespace Jeancsil\FlightSpy\Api\Http;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use Jeancsil\FlightSpy\Api\DataTransfer\SessionParameters;
+use Jeancsil\FlightSpy\History\ElasticSearch\ElasticSearchWriterTrait;
 use Psr\Log\LoggerAwareTrait;
 
 class Transport
 {
     use LoggerAwareTrait;
+    use ElasticSearchWriterTrait;
 
     const LIVE_PRICING = '/apiservices/pricing/v1.0';
 
@@ -90,7 +92,9 @@ class Transport
                 ->client
                 ->get($this->pollUrl);
 
-            return \GuzzleHttp\json_decode($request->getBody()->getContents());
+            $response = \GuzzleHttp\json_decode($request->getBody()->getContents());
+            $this->getElasticSearchWriter()->write($response);
+            return $response;
         } catch (BadResponseException $e) {
             $this->logger->error(
                 sprintf(
