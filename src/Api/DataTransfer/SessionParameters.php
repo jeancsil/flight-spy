@@ -112,11 +112,11 @@ class SessionParameters
         ];
 
         if ($this->inboundDate) {
-            $params['inboundDate'] = $this->inboundDate;
+            $params['inbounddate'] = $this->inboundDate;
         }
 
         if ($this->locationSchema) {
-            $params['locationSchema'] = $this->locationSchema;
+            $params['locationschema'] = $this->locationSchema;
         }
 
         if ($this->cabinClass) {
