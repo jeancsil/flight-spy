@@ -108,7 +108,7 @@ class Transport
      */
     private function setPollUrl($url, $apiKey)
     {
-        $this->pollUrl = "$url?apiKey=$apiKey&sorttype=price&sortorder=desc";
+        $this->pollUrl = "$url?apiKey=$apiKey&sorttype=price&sortorder=asc";
         $this->logger->debug("Pool url is: $this->pollUrl");
     }
 }
