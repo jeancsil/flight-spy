@@ -30,4 +30,4 @@ if [ "$1" == "-d" ] || [ "$1" == "--detached" ]; then
     DETACHED="-d"
 fi
 
-echo docker run ${DETACHED} -t -i jeancsil/flight-spy
+docker run ${DETACHED} -t -i jeancsil/flight-spy
