@@ -22,10 +22,11 @@ Rename the `src/Resources/parameters.yml.dist` to `src/Resources/parameters.yml`
 Copy the `src/Resources/watch.json` to `/watch.json` and add how many flights you wish to track.
 In this file you will put all the flights information like dates, budged, number of adults, kids etc...
 
-`$ git clone https://github.com/jeancsil/flight-spy.git`
-
-`$ docker-compose up -d`
-`$ docker-compose stop //to stop the container`
+```
+$ git clone https://github.com/jeancsil/flight-spy.git
+$ docker-compose up -d
+$ docker-compose stop //to stop the container
+```
 
 ## Documentation
 
