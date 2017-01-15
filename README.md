@@ -24,9 +24,8 @@ In this file you will put all the flights information like dates, budged, number
 
 `$ git clone https://github.com/jeancsil/flight-spy.git`
 
-`$ docker build -t jeancsil/flight-spy .`
-
-`$ docker run -t -i jeancsil/flight-spy`
+`$ docker-compose up -d`
+`$ docker-compose stop //to stop the container`
 
 ## Documentation
 
