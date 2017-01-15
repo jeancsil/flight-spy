@@ -36,6 +36,10 @@ class Period
      */
     public function __construct($durationInDays, \Datetime $dateFrom, \Datetime $dateTo)
     {
+        if (!is_int($durationInDays) || $durationInDays <= 0) {
+            throw new \InvalidArgumentException('The duration should be bigger than 0');
+        }
+
         $this->durationInDays = $durationInDays;
         $this->dateFrom = $dateFrom;
         $this->dateTo = $dateTo;
@@ -48,6 +52,10 @@ class Period
     public function generateDateCombinations()
     {
         $possibleDays = $this->dateFrom->diff($this->dateTo)->days;
+
+        if ($possibleDays < $this->durationInDays) {
+            throw new \InvalidArgumentException('There are no combinations possible');
+        }
 
         $initialDate = clone $this->dateFrom;
         $endDate = clone $this->dateFrom->add(new \DateInterval(sprintf('P%dD', $this->durationInDays)));

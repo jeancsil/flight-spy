@@ -14,11 +14,11 @@ class PeriodTest extends \PHPUnit_Framework_TestCase
      * @param array $expected
      * @dataProvider dataProvider
      */
-    public function testIfBla(Period $period, $numberOfPossibilities, array $expected) {
+    public function testIfCombinationsAreGeneratedRight(Period $period, $numberOfPossibilities, array $expected) {
         $combinations = $period->generateDateCombinations();
 
-        $this->assertEquals(count($combinations), $numberOfPossibilities);
-        $this->assertEquals(count($expected), $numberOfPossibilities);
+        $this->assertEquals($numberOfPossibilities, count($combinations));
+        $this->assertEquals($numberOfPossibilities, count($expected));
 
         $count = 0;
         foreach ($combinations as $combination) {
@@ -32,6 +32,35 @@ class PeriodTest extends \PHPUnit_Framework_TestCase
 
             $count++;
         }
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testIfInvalidRangeThrowsInvalidArgumentException() {
+        $period = new Period(20, new \DateTime('2017-08-01'), new \DateTime('2017-08-20'));
+        $period->generateDateCombinations();
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testIfDurationInDaysZeroThrowsInvalidArgumentException() {
+        new Period(0, new \DateTime('2017-08-01'), new \DateTime('2017-08-20'));
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testIfNotANumberThrowsInvalidArgumentException() {
+        new Period('1', new \DateTime('2017-08-01'), new \DateTime('2017-08-20'));
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testIfNegativeDurationInDaysThrowsInvalidArgumentException() {
+        new Period(-1, new \DateTime('2017-08-01'), new \DateTime('2017-08-20'));
     }
 
     /**
