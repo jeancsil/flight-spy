@@ -9,7 +9,7 @@ interface Processor
 {
     /**
      * @param array $data
-     * @return mixed
+     * @return array
      */
     public function process(array $data);
 }

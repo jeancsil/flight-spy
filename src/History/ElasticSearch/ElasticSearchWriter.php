@@ -23,14 +23,17 @@ class ElasticSearchWriter extends ResultWriter
 
     public function write(array $document)
     {
-        $params = [
-            'index' => $this->indexName,
-            'type' => $this->typeName,
-            'body' => $this->processor->process($document)
-        ];
+        $documents = $this->processor->process($document);
+        foreach ($documents as $document) {
+            $params = [
+                'index' => $this->indexName,
+                'type' => $this->typeName,
+                'body' => $document
+            ];
 
-        Client::getInstance()
-            ->index($params);
+            Client::getInstance()
+                ->index($params);
+        }
     }
 
     public function configureIndex($indexName) {

@@ -12,45 +12,65 @@ class MappingProcessor implements Processor
      */
     private $dataCache;
 
+    /** @inheritdoc */
     public function process(array $data) {
         $this->dataCache = $data;
 
-        $mappedData = [];
-        $mappedData['Creation'] = (new \DateTime())->format(\DATE_ATOM);
-        $mappedData['SessionKey'] = $data['SessionKey'];
-        $mappedData['Status'] = $data['Status'];
-        $mappedData['Query'] = $data['Query'];
-        unset($mappedData['Query']['LocationSchema']);
-
-        $mappedData['Query']['OriginPlace'] = $this->getPlaceNameById($data['Query']['OriginPlace']);
-        $mappedData['Query']['DestinationPlace'] = $this->getPlaceNameById($data['Query']['DestinationPlace']);
-        $mappedData['Query']['OutboundDate'] = $this->formatDate($mappedData['Query']['OutboundDate']);
-        $mappedData['Query']['InboundDate'] = $this->formatDate($mappedData['Query']['InboundDate']);
-
-        $count = 0;
-        $mappedData['Itineraries'] = [];
+        $mappedDocuments = [];
         foreach ($data['Itineraries'] as $itinerary) {
             $outboundCarrier = $this->getCarrier($itinerary['OutboundLegId']);
             $inboundCarrier = $this->getCarrier($itinerary['InboundLegId']);
 
             foreach ($itinerary['PricingOptions'] as $priceOption) {
-                $mappedData['Itineraries'][$count] = [
-                    'Price' => $priceOption['Price'],
-                    'Deeplink' => 'none',//$priceOption['DeeplinkUrl'],
-                    'OutboundCarrier' => $outboundCarrier['Name'],
-                    'InboundCarrier' => $inboundCarrier['Name'],
-                ];
-            }
+                $mappedData = [];
+                $mappedData['Creation'] = $this->formatDate('now');
+                $mappedData['SessionKey'] = $data['SessionKey'];
+                $mappedData['Status'] = $data['Status'];
+                $mappedData['Adults'] = $data['Query']['Adults'];
+                $mappedData['Children'] = $data['Query']['Children'];
+                $mappedData['Infants'] = $data['Query']['Infants'];
+                $mappedData['CabinClass'] = $data['Query']['CabinClass'];
+                $mappedData['Country'] = $data['Query']['Country'];
+                $mappedData['OriginPlace'] = $this->getPlaceNameById($data['Query']['OriginPlace']);
+                $mappedData['DestinationPlace'] = $this->getPlaceNameById($data['Query']['DestinationPlace']);
+                $mappedData['Locale'] = $data['Query']['Locale'];
+                $mappedData['GroupPricing'] = $data['Query']['GroupPricing'];
+                $mappedData['Departure'] = $this->getDepartureDate($itinerary['OutboundLegId']);
+                $mappedData['Arrival'] = $this->getArrivalDate($itinerary['InboundLegId']);
+                $mappedData['Price'] = $this->getPrice($priceOption);
+                $mappedData['PriceFormatted'] = $this->getPrice($priceOption, $data['Query']['Currency']);
+                $mappedData['OutboundAirline'] = $outboundCarrier['Name'];
+                $mappedData['InboundAirline'] = $inboundCarrier['Name'];
+                $mappedData['DeeplinkUrl'] = $priceOption['DeeplinkUrl'];
 
-            $count++;
+                $mappedDocuments[] = $mappedData;
+            }
         }
 
-        return $mappedData;
+        $this->dataCache = null;
+
+        return $mappedDocuments;
     }
 
     private function formatDate($date) {
         return (new \DateTime($date))
             ->format(\DATE_ATOM);
+    }
+
+    private function getDepartureDate($legId) {
+        foreach ($this->dataCache['Legs'] as $leg) {
+            if ($leg['Id'] == $legId) {
+                return $this->formatDate($leg['Departure']);
+            }
+        }
+    }
+
+    private function getArrivalDate($legId) {
+        foreach ($this->dataCache['Legs'] as $leg) {
+            if ($leg['Id'] == $legId) {
+                return $this->formatDate($leg['Arrival']);
+            }
+        }
     }
 
     /**
@@ -77,6 +97,27 @@ class MappingProcessor implements Processor
                         return $carrier;
                     }
                 }
+            }
+        }
+    }
+
+    /**
+     * @param $priceOption
+     * @param $currencyCode
+     * @return string
+     */
+    private function getPrice($priceOption, $currencyCode = null) {
+        if ($currencyCode == null) {
+            return $priceOption['Price'];
+        }
+
+        foreach ($this->dataCache['Currencies'] as $currency) {
+            if ($currency['Code'] == $currencyCode) {
+                if ($currency['SymbolOnLeft']) {
+                    return $currency['Symbol'] . $priceOption['Price'];
+                }
+
+                return $priceOption['Price'] . $currency['Symbol'];
             }
         }
     }
