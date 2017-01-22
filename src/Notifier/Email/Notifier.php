@@ -15,7 +15,6 @@ class Notifier implements NotifiableInterface
      * @var PostmarkClient
      */
     private $mailer;
-
     private $from;
     private $to;
     private $subject;

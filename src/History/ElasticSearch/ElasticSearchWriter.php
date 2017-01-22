@@ -9,6 +9,8 @@ use Jeancsil\FlightSpy\Service\ElasticSearch\Client;
 
 class ElasticSearchWriter extends ResultWriter
 {
+    use ElasticSearchProcessorTrait;
+
     /**
      * @var string
      */
@@ -19,19 +21,16 @@ class ElasticSearchWriter extends ResultWriter
      */
     protected $typeName;
 
-    public function write(array $response)
+    public function write(array $document)
     {
         $params = [
             'index' => $this->indexName,
             'type' => $this->typeName,
-//            'id' => 'my_id',
-            'body' => $response
+            'body' => $this->processor->process($document)
         ];
 
-        $response = Client::getInstance()
+        Client::getInstance()
             ->index($params);
-
-        print_r($response);
     }
 
     public function configureIndex($indexName) {

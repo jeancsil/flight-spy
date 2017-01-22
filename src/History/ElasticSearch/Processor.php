@@ -5,11 +5,11 @@
  */
 namespace Jeancsil\FlightSpy\History\ElasticSearch;
 
-abstract class ResultWriter
+interface Processor
 {
     /**
-     * @param array $document
-     * @return void
+     * @param array $data
+     * @return mixed
      */
-    abstract public function write(array $document);
+    public function process(array $data);
 }

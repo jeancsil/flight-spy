@@ -7,9 +7,16 @@ namespace Jeancsil\FlightSpy\History\ElasticSearch;
 
 trait ElasticSearchWriterTrait
 {
+    /**
+     * @var ElasticSearchWriter
+     */
     protected $writer;
 
-    public function setElasticSearchWriter(ElasticSearchWriter $writer) {
+    /**
+     * @param ElasticSearchWriter $writer
+     */
+    public function setElasticSearchWriter(ElasticSearchWriter $writer)
+    {
         $this->writer = $writer;
     }
 
