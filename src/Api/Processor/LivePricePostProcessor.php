@@ -13,7 +13,7 @@ class LivePricePostProcessor
 {
     use LoggerAwareTrait;
 
-    const MAX_PARSED_DEALS = 5;
+    const MAX_PARSED_DEALS = 50;
 
     /**
      * @var NotifiableInterface[]
@@ -56,7 +56,7 @@ class LivePricePostProcessor
         $deals = [];
         foreach ($responses as $response) {
             if (!$response) {
-                $this->logger->warning('Empty response received...');
+                $this->logger->warning(sprintf('Empty response received: %s', var_export($response, true)));
                 continue;
             }
 
@@ -100,26 +100,20 @@ class LivePricePostProcessor
         foreach ($cheapestItineraries as $itinerary) {
             $logMessage = sprintf('Verifying itinerary #%s: ', $resultCount++);
 
-            if (!isset($itinerary->PricingOptions[0])) {
-                $this->logger->error('No PricingOptions found.');
-                continue;
-            }
+            foreach ($itinerary['PricingOptions'] as $pricingOption) {
+                $price = $this->getPrice($pricingOption);
+                if ($price <= $this->sessionParameters->getMaxPrice()) {
+                    $logMessage .= sprintf("%sDeal found (%s)%s", chr(27) . '[1;32m', $price, chr(27) . "[0m");
+                    $this->logger->debug($logMessage);
 
-            $price = $this->getPrice($itinerary);
-            if ($price <= $this->sessionParameters->getMaxPrice()) {
-                $logMessage .= sprintf("%sDeal found (%s)%s", chr(27) . '[1;32m', $price, chr(27) . "[0m");
-
-                $deals[] = [
-                    'price' => $price,
-                    'agent' => $this->getAgentName($itinerary),
-                    'deepLinkUrl' => $this->getDeepLinkUrl($itinerary)
-                ];
-
-                $this->logger->debug($logMessage);
-                continue;
-            } else {
-                $logMessage .= sprintf("%sNot a Deal(%s)%s", chr(27) . '[1;37m', $price, chr(27) . "[0m");
-                $this->logger->debug($logMessage);
+                    $deals[] = [
+                        'price' => $price,
+                        'agent' => $this->getAgentName($pricingOption),
+                        'deepLinkUrl' => $this->getDeepLinkUrl($pricingOption)
+                    ];
+                } else {
+                    $this->logger->debug(sprintf("%sNot a Deal(%s)%s", chr(27) . '[1;37m', $price, chr(27) . "[0m"));
+                }
             }
         }
 
@@ -127,41 +121,41 @@ class LivePricePostProcessor
     }
 
     /**
-     * @param \stdClass $itinerary
+     * @param \stdClass $pricingOptions
      * @return string
      */
-    private function getDeepLinkUrl($itinerary)
+    private function getDeepLinkUrl($pricingOptions)
     {
-        if (isset($itinerary->PricingOptions[0]->DeeplinkUrl)) {
-            return $itinerary->PricingOptions[0]->DeeplinkUrl;
+        if (isset($pricingOptions['DeeplinkUrl'])) {
+            return $pricingOptions['DeeplinkUrl'];
         }
     }
 
     /**
-     * @param \stdClass $itinerary
+     * @param \stdClass $pricingOptions
      * @return string
      */
-    private function getPrice($itinerary)
+    private function getPrice($pricingOptions)
     {
-        return $itinerary->PricingOptions[0]->Price;
+        return $pricingOptions['Price'];
     }
 
     /**
-     * @param \stdClass $itinerary
+     * @param \stdClass $pricingOptions
      * @return string
      */
-    private function getAgentName($itinerary)
+    private function getAgentName($pricingOptions)
     {
         $agentId = 0;
-        $agents = $itinerary->PricingOptions[0]->Agents;
+        $agents = $pricingOptions['Agents'];
         foreach ($agents as $agent) {
             $agentId = $agent;
             continue;
         }
 
         foreach ($this->agents as $agent) {
-            if ($agent->Id == $agentId) {
-                return $agent->Name;
+            if ($agent['Id'] == $agentId) {
+                return $agent['Name'];
             }
         }
     }
