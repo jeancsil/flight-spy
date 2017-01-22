@@ -1,0 +1,77 @@
+{
+  "history": {
+    "properties": {
+      "Creation": {
+        "type": "date"
+      },
+
+      "SessionKey": {
+        "type": "keyword"
+      },
+      "Status": {
+        "type": "keyword"
+      },
+
+      "Itineraries": {
+        "properties": {
+          "Deeplink": {
+            "type": "keyword"
+          },
+          "InboundCarrier": {
+            "type": "keyword"
+          },
+          "OutboundCarrier": {
+            "type": "keyword"
+          },
+          "Price": {
+            "type": "float"
+          }
+        }
+      },
+
+      "Query": {
+        "properties": {
+          "Adults": {
+            "type": "short"
+          },
+          "Children": {
+            "type": "short"
+          },
+          "Infants": {
+            "type": "short"
+          },
+          "CabinClass": {
+            "type": "keyword"
+          },
+          "Country": {
+            "type": "keyword"
+          },
+          "Currency": {
+            "type": "keyword"
+          },
+          "OriginPlace": {
+            "type": "keyword"
+          },
+          "DestinationPlace": {
+            "type": "keyword"
+          },
+          "OutboundDate": {
+            "type": "date"
+          },
+          "InboundDate": {
+            "type": "date"
+          },
+          "Locale": {
+            "type": "keyword"
+          },
+          "LocationSchema": {
+            "type": "keyword"
+          },
+          "GroupPricing": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}
