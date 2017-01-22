@@ -9,6 +9,7 @@ use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use Jeancsil\FlightSpy\Api\DataTransfer\SessionParameters;
 use Jeancsil\FlightSpy\History\ElasticSearch\ElasticSearchWriterTrait;
+use Jeancsil\FlightSpy\History\ElasticSearch\MappingProcessor;
 use Psr\Log\LoggerAwareTrait;
 
 class Transport
@@ -39,7 +40,7 @@ class Transport
     /**
      * @param SessionParameters $parameters
      * @param bool $newSession
-     * @return array
+     * @return \stdClass
      */
     public function findQuotes(SessionParameters $parameters, $newSession)
     {
@@ -83,24 +84,44 @@ class Transport
     }
 
     /**
-     * @return array
+     * @return \stdClass
      */
     private function poll()
     {
         try {
-            $request = $this
+            $response = $this
                 ->client
                 ->get($this->pollUrl);
 
-            $response = \GuzzleHttp\json_decode($request->getBody()->getContents());
-            $this->getElasticSearchWriter()->write($response);
-            return $response;
+            $this->logger->info("HTTPStatusCode: " . $response->getStatusCode());
+            $contents = str_replace("'", '\'', $response->getBody()->getContents());
+
+            $arrayContent = \GuzzleHttp\json_decode($contents, true);
+            if (!is_array($arrayContent)) {
+                $this->logger->critical(
+                    sprintf('Expecting $arrayContent to be an array. %s given.', gettype($arrayContent))
+                );
+                return;
+            }
+
+            $this->getElasticSearchWriter()
+                ->setProcessor(new MappingProcessor())
+                ->write($arrayContent);
+
+            return (object) $arrayContent;
         } catch (BadResponseException $e) {
             $this->logger->error(
                 sprintf(
                     "[Transport::pool]\nStatusCode: %d\nBody: %s",
                     $e->getResponse()->getStatusCode(),
                     $e->getResponse()->getBody()
+                )
+            );
+        } catch (\Exception $e) {
+            $this->logger->error(
+                sprintf(
+                    "[Transport::pool]\nException:\n%s",
+                    $e->getMessage()
                 )
             );
         }
