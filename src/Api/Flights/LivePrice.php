@@ -28,7 +28,7 @@ class LivePrice
      */
     public function getMultiDeals(array $sessionParameters)
     {
-        $response = [];
+        $responses = [];
         static $requests = 0;
         foreach ($sessionParameters as $sessionParameter) {
             if (!$sessionParameter instanceof SessionParameters) {
@@ -36,10 +36,12 @@ class LivePrice
             }
 
             $newSession = ($requests % 20) == 0;
-            $response[] = $this->getDeals($sessionParameter, $newSession);
-            $requests++;
+            if ($response = $this->getDeals($sessionParameter, $newSession)) {
+                $responses[] = $response;
+                $requests++;
+            }
         }
 
-        return $response;
+        return $responses;
     }
 }

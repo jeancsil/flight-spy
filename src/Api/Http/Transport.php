@@ -94,6 +94,11 @@ class Transport
                 ->get($this->pollUrl);
 
             $this->logger->info("HTTPStatusCode: " . $response->getStatusCode());
+
+            if ($response->getStatusCode() != 200) {
+                return;
+            }
+
             $contents = str_replace("'", '\'', $response->getBody()->getContents());
 
             $arrayContent = \GuzzleHttp\json_decode($contents, true);
