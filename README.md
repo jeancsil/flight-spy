@@ -41,7 +41,7 @@ $ docker-compose up -d
 
 ![alt text](https://raw.githubusercontent.com/jeancsil/flight-spy/master/src/Resources/KibanaDashboard.png "Kibana Dashboard")
 
-Import the `src/Resources/kibana/Dashboard.json` into your [http://localhost:5601/app/kibana#/management/kibana/objects](http://localhost:5601/app/kibana#/management/kibana/objects)
+Import the `src/Resources/kibana/Dashboard.json` file into your kibana dashboards panel: [http://localhost:5601/app/kibana#/management/kibana/objects](http://localhost:5601/app/kibana#/management/kibana/objects)
 
 ## Documentation
 
