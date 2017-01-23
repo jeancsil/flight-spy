@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "97733485fd9f5118be6710e2db564fc1",
+    "content-hash": "6bd5d9e3369694993b6b24d1092689d3",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1762,7 +1762,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2017-01-23T09:23:06+00:00"
+            "time": "2017-01-23 09:23:06"
         },
         {
             "name": "myclabs/deep-copy",
@@ -2182,7 +2182,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-01-22T10:02:41+00:00"
+            "time": "2017-01-22 10:02:41"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -2445,7 +2445,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-01-22T23:52:40+00:00"
+            "time": "2017-01-22 23:52:40"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3095,7 +3095,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2017-01-22T21:58:02+00:00"
+            "time": "2017-01-22 21:58:02"
         },
         {
             "name": "webmozart/assert",
@@ -3154,7 +3154,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">= 5.5"
+        "php": "^5.6.6|^7.0"
     },
     "platform-dev": []
 }
