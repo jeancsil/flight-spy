@@ -9,6 +9,8 @@ use Elasticsearch\ClientBuilder;
 
 final class Client
 {
+    private static $ELASTICSEARCH_DEFAULT_HOST = 'elasticsearch:9200';
+
     /**
      * @var \Elasticsearch\Client
      */
@@ -31,6 +33,7 @@ final class Client
             $logger = ClientBuilder::defaultLogger('flightspy_elasticsearch.log');
 
             static::$instance = ClientBuilder::create()
+                ->setHosts([static::$ELASTICSEARCH_DEFAULT_HOST])
                 ->setRetries(2)
                 ->setLogger($logger)
                 ->build();
