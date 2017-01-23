@@ -7,30 +7,39 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jeancsil/flight-spy/master/LICENSE) [![Twitter](https://img.shields.io/twitter/url/https/github.com/jeancsil/flight-spy.svg?style=social)](https://twitter.com/intent/tweet?text=Watch the best fare for your next trip!&url=http://github.com%2Fjeancsil%2Fflight-spy)
 
 
-Watch as much flights you want and get notified for YOUR budget.
-Currently by E-mail and/or Slack.
+##Looking for the cheapest flights and don't have enough time to track all the prices?
 
-###Notification channels:
+####Be notified whenever the budget you're looking for pops up by only declaring a **simple JSON file**!
 
-[![Slack](https://raw.githubusercontent.com/jeancsil/flight-spy/master/src/Resources/slack.png)](https://slack.com/)
-
-[![Postmark](https://raw.githubusercontent.com/jeancsil/flight-spy/master/src/Resources/postmark.png)](https://postmarkapp.com/)
+```
+[
+  {
+    "from": "FRA-sky",
+    "to": "GRU-sky",
+    "search-period-from": "2017-07-01",
+    "search-period-to": "2017-07-31",
+    "search-period-travel-days": 20,
+    "max-price": "650",
+    "currency": "EUR",
+    "country": "DE",
+    "locale": "de-DE",
+    "adults": "1",
+    "children": "1"
+  }
+]
+```
 
 ## Install with docker (recommended)
 Rename the `src/Resources/parameters.yml.dist` to `src/Resources/parameters.yml` and update the content with your data.
 
-Copy the `src/Resources/watch.json` to `/watch.json` and add how many flights you wish to track.
-In this file you will put all the flights information like dates, budged, number of adults, kids etc...
-
 ```
 $ git clone https://github.com/jeancsil/flight-spy.git
 $ docker-compose up -d
-$ docker-compose stop //to stop the container
 ```
 
 ## Documentation
 
-FlightSpy will look for the best deals for you from 5 to 5 minutes and will let you know by e-mail AND/OR Slack if there is a good fare for you next trip!
+FlightSpy will look for the best deals for you from 5 to 5 minutes and will let you know by e-mail/Slack if there is a good fare for you next trip!
 
 ## Support
 
