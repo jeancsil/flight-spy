@@ -29,13 +29,19 @@
 ]
 ```
 
-## Install with docker (recommended)
+## Install with docker
 Rename the `src/Resources/parameters.yml.dist` to `src/Resources/parameters.yml` and update the content with your data.
 
 ```
 $ git clone https://github.com/jeancsil/flight-spy.git
 $ docker-compose up -d
 ```
+
+## Visualize your watched prices with Kibana
+
+![alt text](https://raw.githubusercontent.com/jeancsil/flight-spy/master/src/Resources/KibanaDashboard.png "Kibana Dashboard")
+
+Import the `src/Resources/kibana/Dashboard.json` into your [http://localhost:5601/app/kibana#/management/kibana/objects](http://localhost:5601/app/kibana#/management/kibana/objects)
 
 ## Documentation
 
