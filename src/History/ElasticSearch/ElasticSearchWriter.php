@@ -36,11 +36,13 @@ class ElasticSearchWriter extends ResultWriter
         }
     }
 
-    public function configureIndex($indexName) {
+    public function configureIndex($indexName)
+    {
         $this->indexName = $indexName;
     }
 
-    public function configureType($typeName) {
+    public function configureType($typeName)
+    {
         $this->typeName = $typeName;
     }
 }

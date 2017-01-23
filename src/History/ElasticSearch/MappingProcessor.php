@@ -13,7 +13,8 @@ class MappingProcessor implements Processor
     private $dataCache;
 
     /** @inheritdoc */
-    public function process(array $data) {
+    public function process(array $data)
+    {
         $this->dataCache = $data;
 
         $mappedDocuments = [];
@@ -52,12 +53,14 @@ class MappingProcessor implements Processor
         return $mappedDocuments;
     }
 
-    private function formatDate($date) {
+    private function formatDate($date)
+    {
         return (new \DateTime($date))
             ->format(\DATE_ATOM);
     }
 
-    private function getDepartureDate($legId) {
+    private function getDepartureDate($legId)
+    {
         foreach ($this->dataCache['Legs'] as $leg) {
             if ($leg['Id'] == $legId) {
                 return $this->formatDate($leg['Departure']);
@@ -65,7 +68,8 @@ class MappingProcessor implements Processor
         }
     }
 
-    private function getArrivalDate($legId) {
+    private function getArrivalDate($legId)
+    {
         foreach ($this->dataCache['Legs'] as $leg) {
             if ($leg['Id'] == $legId) {
                 return $this->formatDate($leg['Arrival']);
@@ -77,7 +81,8 @@ class MappingProcessor implements Processor
      * @param $placeId
      * @return string
      */
-    private function getPlaceNameById($placeId) {
+    private function getPlaceNameById($placeId)
+    {
         foreach ($this->dataCache['Places'] as $place) {
             if ($place['Id'] == $placeId) {
                 return $place['Name'];
@@ -89,7 +94,8 @@ class MappingProcessor implements Processor
      * @param $legId
      * @return array
      */
-    private function getCarrier($legId) {
+    private function getCarrier($legId)
+    {
         foreach ($this->dataCache['Legs'] as $leg) {
             if ($leg['Id'] == $legId) {
                 foreach ($this->dataCache['Carriers'] as $carrier) {
@@ -106,7 +112,8 @@ class MappingProcessor implements Processor
      * @param $currencyCode
      * @return string
      */
-    private function getPrice($priceOption, $currencyCode = null) {
+    private function getPrice($priceOption, $currencyCode = null)
+    {
         if ($currencyCode == null) {
             return $priceOption['Price'];
         }

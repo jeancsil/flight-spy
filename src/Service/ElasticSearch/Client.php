@@ -25,7 +25,8 @@ final class Client
      * Returns ElasticSearch client object
      * @return \Elasticsearch\Client
      */
-    public static function getInstance() {
+    public static function getInstance()
+    {
         if (is_null(static::$instance)) {
             $logger = ClientBuilder::defaultLogger('flightspy_elasticsearch.log');
 
