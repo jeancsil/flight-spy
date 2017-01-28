@@ -84,7 +84,8 @@ class Notifier implements NotifiableInterface
 
             $notification = new SlackNotification();
             $notification->to = $to;
-            $message = $deal->getAgentName() . $parameters->currency . number_format($deal->getPrice());
+            $message = $deal->getAgentName() . ' ';
+            $message.= $parameters->currency . ' *' . number_format($deal->getPrice()) . '* ';
 
             if ($deal->getDeepLinkUrl()) {
                 $message .=  PHP_EOL . "<{$deal->getDeepLinkUrl()}|Deep Link>";
