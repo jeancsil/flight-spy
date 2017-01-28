@@ -29,8 +29,17 @@
 ]
 ```
 
+## Prerequisites
+Create your account at Skyscanner to get your API access. Don't worry, it's for free! [http://en.business.skyscanner.net/](http://en.business.skyscanner.net/en-gb/products/travel-apis/)
+
+To receive notifications by Slack you'll have to create one account here: [https://slack.com/](https://slack.com/)
+
+If you also want to receive e-mails create a free account at [https://postmarkapp.com/](https://postmarkapp.com/)
+
 ## Install with docker
-Rename the `src/Resources/parameters.yml.dist` to `src/Resources/parameters.yml` and update the content with your data.
+Rename the `src/Resources/parameters.yml.dist` to `src/Resources/parameters.yml` and update the content with the data from the previous step.
+
+Rename the `docker/volume/watch.json.dist` to `docker/volume/watch.json` and fill with your next trips!
 
 ```
 $ git clone https://github.com/jeancsil/flight-spy.git
@@ -45,7 +54,7 @@ Import the `src/Resources/kibana/Dashboard.json` file into your kibana dashboard
 
 ## Documentation
 
-FlightSpy will look for the best deals for you from 5 to 5 minutes and will let you know by e-mail/Slack if there is a good fare for you next trip!
+FlightSpy will look for the best deals for you every 15 minutes and will let you know by e-mail/Slack if there is a good price for you next trip!
 
 ## Support
 
