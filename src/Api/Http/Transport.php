@@ -8,7 +8,7 @@ namespace Jeancsil\FlightSpy\Api\Http;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use Jeancsil\FlightSpy\Api\DataTransfer\SessionParameters;
-use Jeancsil\FlightSpy\History\ElasticSearch\ElasticSearchWriterTrait;
+use Jeancsil\FlightSpy\Service\ElasticSearch\ElasticSearchWriterTrait;
 use Jeancsil\FlightSpy\History\ElasticSearch\MappingProcessor;
 use Psr\Log\LoggerAwareTrait;
 
@@ -99,9 +99,11 @@ class Transport
                 return;
             }
 
-            $contents = str_replace("'", '\'', $response->getBody()->getContents());
+            $arrayContent = \GuzzleHttp\json_decode(
+                str_replace("'", '\'', $response->getBody()->getContents()),
+                true
+            );
 
-            $arrayContent = \GuzzleHttp\json_decode($contents, true);
             if (!is_array($arrayContent)) {
                 $this->logger->critical(
                     sprintf('Expecting $arrayContent to be an array. %s given.', gettype($arrayContent))
