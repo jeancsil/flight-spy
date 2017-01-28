@@ -69,7 +69,7 @@ class Transport
             }
 
             $this->setPollUrl($request->getHeaders()['Location'][0], $parametersArray['apiKey']);
-            sleep(1);
+            usleep(500000);
         } catch (BadResponseException $e) {
             $this->logger->error(
                 sprintf(
