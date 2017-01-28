@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 /**
- * @author Jean Silva <jeancsil@gmail.com>
+ * @author Jean Silva <me@jeancsil.com>
  * @license MIT
  */
 require __DIR__ . '/../boot.php';
