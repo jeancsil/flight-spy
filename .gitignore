@@ -5,4 +5,5 @@ phpunit.xml
 vendor
 reports
 src/Resources/parameters.yml
+docker/volume/watch.json
 flightspy_elasticsearch.log
