@@ -6,6 +6,7 @@
 namespace Jeancsil\FlightSpy\Api\Processor;
 
 use Jeancsil\FlightSpy\Api\DataTransfer\SessionParameters;
+use Jeancsil\FlightSpy\Notifier\Deal;
 use Jeancsil\FlightSpy\Notifier\NotifiableInterface;
 use Psr\Log\LoggerAwareTrait;
 
@@ -39,7 +40,7 @@ class LivePricePostProcessor
     }
 
     /**
-     * @param array $deals
+     * @param Deal[] $deals
      */
     public function notifyAll(array $deals)
     {
@@ -87,32 +88,32 @@ class LivePricePostProcessor
 
     /**
      * @param \stdClass $response
-     * @return array
+     * @return Deal[]
      */
     private function doProcess(\stdClass $response)
     {
         $itineraries = $response->Itineraries;
-        $cheapestItineraries = array_slice($itineraries, 0, static::MAX_PARSED_DEALS);
         $this->agents = $response->Agents;
 
         $deals = [];
         $resultCount = 1;
+        $cheapestItineraries = array_slice($itineraries, 0, static::MAX_PARSED_DEALS);
         foreach ($cheapestItineraries as $itinerary) {
             $logMessage = sprintf('Verifying itinerary #%s: ', $resultCount++);
 
             foreach ($itinerary['PricingOptions'] as $pricingOption) {
                 $price = $this->getPrice($pricingOption);
+
                 if ($price <= $this->sessionParameters->getMaxPrice()) {
                     $logMessage .= sprintf("%sDeal found (%s)%s", chr(27) . '[1;32m', $price, chr(27) . "[0m");
                     $this->logger->debug($logMessage);
 
-                    $deals[] = [
-                        'price' => $price,
-                        'agent' => $this->getAgentName($pricingOption),
-                        'deepLinkUrl' => $this->getDeepLinkUrl($pricingOption)
-                    ];
-                } else {
-                    $this->logger->debug(sprintf("%sNot a Deal(%s)%s", chr(27) . '[1;37m', $price, chr(27) . "[0m"));
+                    $deals[] = new Deal(
+                        $this->sessionParameters,
+                        $price,
+                        $this->getAgentName($pricingOption),
+                        $this->getDeepLinkUrl($pricingOption)
+                    );
                 }
             }
         }
