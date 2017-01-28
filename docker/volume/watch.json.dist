@@ -1,6 +1,3 @@
-/**
- * Example of configuration file to watch more than one deal each time
- */
 [
   {
     "api-key": "your-api-key",
