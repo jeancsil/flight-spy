@@ -41,7 +41,7 @@ class Notifier implements NotifiableInterface
      */
     public function notify(array $deals, SessionParameters $sessionParameters)
     {
-        $notifications = $this->createNotifications($deals, $sessionParameters);
+        $notifications = $this->createNotifications($sessionParameters, $deals);
 
         /**
          * @var string $identifier
