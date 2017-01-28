@@ -3,14 +3,14 @@
  * @author Jean Silva <me@jeancsil.com>
  * @license MIT
  */
-namespace Jeancsil\FlightSpy\History\ElasticSearch;
+namespace Jeancsil\FlightSpy\Service\ElasticSearch;
 
 trait ElasticSearchProcessorTrait
 {
     /**
      * @var Processor
      */
-    protected $processor;
+    private $processor;
 
    /**
      * @return Processor

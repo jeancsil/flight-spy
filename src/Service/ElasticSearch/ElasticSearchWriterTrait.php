@@ -3,21 +3,21 @@
  * @author Jean Silva <me@jeancsil.com>
  * @license MIT
  */
-namespace Jeancsil\FlightSpy\History\ElasticSearch;
+namespace Jeancsil\FlightSpy\Service\ElasticSearch;
 
 trait ElasticSearchWriterTrait
 {
     /**
      * @var ElasticSearchWriter
      */
-    protected $writer;
+    protected $elasticSearchWriter;
 
     /**
      * @param ElasticSearchWriter $writer
      */
     public function setElasticSearchWriter(ElasticSearchWriter $writer)
     {
-        $this->writer = $writer;
+        $this->elasticSearchWriter = $writer;
     }
 
     /**
@@ -25,6 +25,6 @@ trait ElasticSearchWriterTrait
      */
     public function getElasticSearchWriter()
     {
-        return $this->writer;
+        return $this->elasticSearchWriter;
     }
 }
