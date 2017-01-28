@@ -1,5 +1,7 @@
 app:
   build: .
+  volumes:
+    - ./docker/volume:/watcher
   links:
     - elasticsearch:elasticsearch
 
