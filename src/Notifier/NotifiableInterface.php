@@ -10,16 +10,23 @@ use Jeancsil\FlightSpy\Api\DataTransfer\SessionParameters;
 interface NotifiableInterface
 {
     /**
-     * @param array $deals
+     * @param Deal[] $deals
      * @param SessionParameters $sessionParameters
      * @return void
      */
     public function notify(array $deals, SessionParameters $sessionParameters);
 
     /**
-     * @param array $deals
-     * @param SessionParameters $parameters
-     * @return Notification
+     * @param Deal $deal
+     * @param string $notifyTo
+     * @return boolean
      */
-    public function createNotification(array $deals, SessionParameters $parameters);
+    public function wasNotified(Deal $deal, $notifyTo);
+
+    /**
+     * @param SessionParameters $parameters
+     * @param Deal[] $deals
+     * @return Notification[]
+     */
+    public function createNotifications(SessionParameters $parameters, array $deals = []);
 }

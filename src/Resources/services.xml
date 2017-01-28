@@ -43,7 +43,7 @@
                  public="true">
             <argument type="service" id="jeancsil_flight_spy.http_client" />
             <call method="setElasticSearchWriter">
-                <argument type="service" id="jeancsil_flight_spy.writer.elasticSearch" />
+                <argument type="service" id="jeancsil_flight_spy.writer.history.elasticSearch" />
             </call>
             <call method="setLogger">
                 <argument type="service" id="jeancsil_flight_spy.logger.log" />
@@ -82,14 +82,36 @@
         </service>
 
         <!-- ElasticSearch -->
-        <service id="jeancsil_flight_spy.writer.elasticSearch"
-                 class="Jeancsil\FlightSpy\History\ElasticSearch\ElasticSearchWriter">
+        <service id="jeancsil_flight_spy.writer.history.elasticSearch"
+                 class="Jeancsil\FlightSpy\Service\ElasticSearch\ElasticSearchWriter">
             <call method="configureIndex">
                 <argument>%jeancsil.flightspy.elasticsearch.indexName%</argument>
             </call>
 
             <call method="configureType">
-                <argument>%jeancsil.flightspy.elasticsearch.indexType%</argument>
+                <argument>%jeancsil.flightspy.elasticsearch.historyType%</argument>
+            </call>
+        </service>
+
+        <service id="jeancsil_flight_spy.writer.notification.elasticSearch"
+                 class="Jeancsil\FlightSpy\Service\ElasticSearch\ElasticSearchWriter">
+            <call method="configureIndex">
+                <argument>%jeancsil.flightspy.elasticsearch.indexName%</argument>
+            </call>
+
+            <call method="configureType">
+                <argument>%jeancsil.flightspy.elasticsearch.notificationType%</argument>
+            </call>
+        </service>
+
+        <service id="jeancsil_flight_spy.requester.elasticSearch"
+                 class="Jeancsil\FlightSpy\Service\ElasticSearch\ElasticSearchRequester">
+            <call method="configureIndex">
+                <argument>%jeancsil.flightspy.elasticsearch.indexName%</argument>
+            </call>
+
+            <call method="configureType">
+                <argument>%jeancsil.flightspy.elasticsearch.notificationType%</argument>
             </call>
         </service>
 

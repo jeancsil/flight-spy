@@ -6,78 +6,102 @@
 namespace Jeancsil\FlightSpy\Notifier\Slack;
 
 use Jeancsil\FlightSpy\Api\DataTransfer\SessionParameters;
+use Jeancsil\FlightSpy\Service\ElasticSearch\ElasticSearchWriterTrait;
+use Jeancsil\FlightSpy\Service\ElasticSearch\ElasticSearchRequester;
+use Jeancsil\FlightSpy\Notifier\Deal;
 use Jeancsil\FlightSpy\Notifier\NotifiableInterface;
 use Maknz\Slack\Client;
 
 class Notifier implements NotifiableInterface
 {
+    use ElasticSearchWriterTrait;
+
+    /**
+     * @var ElasticSearchRequester
+     */
+    private $elasticSearchRequester;
     /**
      * @var Client
      */
     private $slackClient;
+    /**
+     * @var string
+     */
+    private $slackUserName;
 
-    public function __construct(Client $slackClient)
+    public function __construct(Client $slackClient, $slackUserName)
     {
         $this->slackClient = $slackClient;
+        $this->slackUserName = $slackUserName;
     }
 
     /**
-     * @param array $deals
+     * @param Deal[] $deals
      * @param SessionParameters $sessionParameters
      */
     public function notify(array $deals, SessionParameters $sessionParameters)
     {
-        if (empty($deals)) {
-            return;
+        $notifications = $this->createNotifications($deals, $sessionParameters);
+
+        /**
+         * @var string $identifier
+         * @var SlackNotification $notification
+         */
+        foreach ($notifications as $identifier => $notification) {
+            $this->slackClient
+                ->createMessage()
+                ->send($notification->message);
+
+            $this->elasticSearchWriter
+                ->writeOne([
+                    'identifier' => $identifier,
+                    'notified' => $notification->to
+                ]);
+        }
+    }
+
+    /** @inheritdoc */
+    public function wasNotified(Deal $deal, $notifyTo)
+    {
+        return $this->elasticSearchRequester
+            ->wasNotified(
+                $deal->getIdentifier(),
+                $notifyTo
+            );
+    }
+
+    /** @inheritdoc */
+    public function createNotifications(SessionParameters $parameters, array $deals = [])
+    {
+        $notifications = [];
+        /** @var Deal $deal */
+        foreach ($deals as $deal) {
+            $to = "@{$this->slackUserName}";
+
+            if ($this->wasNotified($deal, $to)) {
+                continue;
+            }
+
+            $notification = new SlackNotification();
+            $notification->to = $to;
+            $message = $deal->getAgentName() . $parameters->currency . number_format($deal->getPrice());
+
+            if ($deal->getDeepLinkUrl()) {
+                $message .=  PHP_EOL . "<{$deal->getDeepLinkUrl()}|Deep Link>";
+            }
+
+            $notification->message = $message;
+            $notifications[$deal->getIdentifier()] = $notification;
         }
 
-        $notification = $this->createNotification($deals, $sessionParameters);
-
-        $this->slackClient
-            ->createMessage()
-            ->send($notification->message);
+        return $notifications;
     }
 
     /**
-     * @param array $deals
-     * @param SessionParameters $parameters
-     * @return SlackNotification
+     * @param ElasticSearchRequester $elasticSearchRequester
      */
-    public function createNotification(array $deals, SessionParameters $parameters)
+    public function setElasticSearchRequester(ElasticSearchRequester $elasticSearchRequester)
     {
-        if (empty($deals)) {
-            return;
-        }
-
-        $EOL = PHP_EOL;
-
-        $notification = new SlackNotification();
-        $notification->to = '@jesilva';
-
-        $message = sprintf(
-            "`FROM: %s`.$EOL`TO: %s`.$EOL`DEPARTURE: %s`.$EOL`ARRIVAL: %s`.$EOL`ADULTS: %s`$EOL`KIDS: %s`$EOL$EOL",
-            $parameters->originPlace,
-            $parameters->destinationPlace,
-            (new \DateTime($parameters->outboundDate))->format('d.m.Y'),
-            (new \DateTime($parameters->inboundDate))->format('d.m.Y'),
-            $parameters->adults,
-            $parameters->infants + $parameters->children
-        );
-
-        foreach ($deals as $deal) {
-            $deal = (object) $deal;
-            $message .= '_' . $deal->agent . '_ ';
-            $message .= '*' . $parameters->currency . ' ' . number_format($deal->price) . '* ';
-
-            if ($deal->deepLinkUrl) {
-                $message .= "<$deal->deepLinkUrl|buy>" . PHP_EOL;
-            }
-
-            $message .= PHP_EOL;
-        }
-
-        $notification->message = $message;
-
-        return $notification;
+        $this->elasticSearchRequester = $elasticSearchRequester;
     }
 }

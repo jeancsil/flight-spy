@@ -5,6 +5,8 @@
  */
 namespace Jeancsil\FlightSpy\History\ElasticSearch;
 
+use Jeancsil\FlightSpy\Service\ElasticSearch\Processor;
+
 class MappingProcessor implements Processor
 {
     /**
