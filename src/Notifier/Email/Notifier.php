@@ -6,95 +6,163 @@
 namespace Jeancsil\FlightSpy\Notifier\Email;
 
 use Jeancsil\FlightSpy\Api\DataTransfer\SessionParameters;
+use Jeancsil\FlightSpy\Service\Currency\PriceFormatter;
+use Jeancsil\FlightSpy\Service\ElasticSearch\ElasticSearchWriterTrait;
+use Jeancsil\FlightSpy\Service\ElasticSearch\ElasticSearchRequester;
+use Jeancsil\FlightSpy\Notifier\Deal;
 use Jeancsil\FlightSpy\Notifier\NotifiableInterface;
 use Postmark\PostmarkClient;
 
 class Notifier implements NotifiableInterface
 {
+    use ElasticSearchWriterTrait;
+
+    /**
+     * @var ElasticSearchRequester
+     */
+    private $elasticSearchRequester;
+    /**
+     * @var PriceFormatter
+     */
+    private $priceFormatter;
     /**
      * @var PostmarkClient
      */
     private $mailer;
+    private $html;
     private $from;
     private $to;
     private $subject;
-    private $html;
 
-    public function __construct(PostmarkClient $mailer, $from, $to, $subject, $html)
+    private $tableLines = [];
+
+    public function __construct(PostmarkClient $mailer, $html, $from, $to, $subject)
     {
         $this->mailer = $mailer;
         $this->from = $from;
         $this->to = $to;
         $this->subject = $subject;
-        $this->html = $html;
+
+        $this->initializeHtmlTemplate($html);
     }
 
+    /** @inheritdoc */
     public function notify(array $deals, SessionParameters $sessionParameters)
     {
-        if (empty($deals)) {
+        $notifications = $this->createNotifications($sessionParameters, $deals);
+
+        if (empty($this->tableLines)) {
             return;
         }
 
-        $notification = $this->createNotification($deals, $sessionParameters);
+        /**
+         * @var string $identifier
+         * @var EmailNotification $notification
+         */
+        foreach ($notifications as $identifier => $notification) {
+            $this->elasticSearchWriter
+                ->writeOne([
+                    'identifier' => $identifier,
+                    'notified' => $this->to
+                ]);
+        }
 
         $this->mailer->sendEmail(
-            $notification->from,
-            $notification->to,
-            $notification->subject,
-            $notification->html
+            $this->from,
+            $this->to,
+            $this->subject,
+            str_replace('<!--NewLine-->', implode('', $this->tableLines), $this->html)
         );
     }
 
-    /**
-     * @param array $deals
-     * @param SessionParameters $parameters
-     * @return EmailNotification
-     */
-    public function createNotification(array $deals, SessionParameters $parameters)
+    /** @inheritdoc */
+    public function wasNotified(Deal $deal, $notifyTo)
     {
-        $message = sprintf(
-            '<br />From: %s.
-            <br />To: %s.
-            <br />Departure: %s.
-            <br />Arrival: %s.
-            <br />Currency: %s
-            <br />Adults: %s<br />',
-            $parameters->originPlace,
-            $parameters->destinationPlace,
-            $parameters->outboundDate,
-            $parameters->inboundDate,
-            $parameters->currency,
-            $parameters->adults
-        );
+        return $this->elasticSearchRequester
+            ->wasNotified(
+                $deal->getIdentifier(),
+                $notifyTo
+            );
+    }
 
+
+    /** @inheritdoc */
+    public function createNotifications(SessionParameters $parameters, array $deals = [])
+    {
+        $notifications = [];
+        /** @var Deal $deal */
         foreach ($deals as $deal) {
-            $deal = (object) $deal;
-            $message .= '<h3>' . $deal->agent . '</h3>';
-            $message .= '<h4>' . number_format($deal->price) . '</h4>';
-
-            if ($deal->deepLinkUrl) {
-                $message .= "<a href=$deal->deepLinkUrl>link</a>";
+            if ($this->wasNotified($deal, $this->to)) {
+                continue;
             }
 
-            $message .= '<br />';
+            $this->tableLines[] = $this->createTableLine(
+                $deal->getAgentName(),
+                $this->priceFormatter->format($deal->getPrice(), $parameters->currency),
+                $deal->getDeepLinkUrl()
+            );
+
+            $notifications[$deal->getIdentifier()] = new EmailNotification();
         }
 
-        $notification = new EmailNotification();
-        $notification->from = $this->from;
-        $notification->to = $this->to;
-        $notification->subject = $this->subject;
-        $notification->html = $this->html;
+        return $notifications;
+    }
 
-        $notification->html = str_replace(
-            '{message}',
-            $message,
-            $notification->html
+    /**
+     * @param ElasticSearchRequester $elasticSearchRequester
+     */
+    public function setElasticSearchRequester(ElasticSearchRequester $elasticSearchRequester)
+    {
+        $this->elasticSearchRequester = $elasticSearchRequester;
+    }
+
+    /**
+     * @param PriceFormatter $priceFormatter
+     */
+    public function setPriceFormatter(PriceFormatter $priceFormatter)
+    {
+        $this->priceFormatter = $priceFormatter;
+    }
+
+    /**
+     * @param $htmlTemplate
+     */
+    private function initializeHtmlTemplate($htmlTemplate)
+    {
+        $this->html = file_get_contents($htmlTemplate);
+    }
+
+    /**
+     * @param $agentName
+     * @param $price
+     * @param $deepLink
+     * @return string
+     */
+    private function createTableLine($agentName, $price, $deepLink)
+    {
+        $deepLinkHtml = '';
+
+        if ($deepLink) {
+            $deepLinkHtml = '<a href="' . $deepLink . '" 
+               target="_blank" 
+               style="text-decoration:underline;background-color:#ffffff;
+                border:solid 1px #3498db;border-radius:5px;
+                box-sizing:border-box;color:#3498db;
+                cursor:pointer;font-size:12px;
+                margin:0;padding:3px 3px;
+                text-decoration:none;text-transform:capitalize;
+                background-color:#3498db;border-color:#3498db;color:#ffffff;">Book</a>';
+        }
+
+        return sprintf('
+            <tr>
+                <td style="font-family:sans-serif;font-size:14px;vertical-align:top;padding-bottom:15px;">%s</td>
+                <td style="font-family:sans-serif;font-size:14px;vertical-align:top;padding-bottom:15px;">%s</td>
+                <td style="font-family:sans-serif;font-size:14px;vertical-align:top;padding-bottom:15px;">%s</td>
+            </tr>',
+            $agentName,
+            $price,
+            $deepLinkHtml
         );
-
-        if (!empty($dealsInfo)) {
-            $notification->ready = true;
-        }
-
-        return $notification;
     }
 }

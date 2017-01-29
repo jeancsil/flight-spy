@@ -31,17 +31,19 @@
         <service id="jeancsil_flight_spy.notifier.email"
                  class="Jeancsil\FlightSpy\Notifier\Email\Notifier">
             <argument type="service" id="jeancsil_flight_spy.mailer.postmark" />
+            <argument>src/Notifier/Email/View/notification.html</argument>
             <argument>%jeancsil.flightspy.email.config.from%</argument>
             <argument>%jeancsil.flightspy.email.config.to%</argument>
             <argument>%jeancsil.flightspy.email.config.subject%</argument>
-            <argument>%jeancsil.flightspy.email.config.message%</argument>
-            <argument>%jeancsil.flightspy.email.config.html%</argument>
 
             <call method="setElasticSearchRequester">
                 <argument type="service" id="jeancsil_flight_spy.requester.elasticSearch" />
             </call>
             <call method="setElasticSearchWriter">
                 <argument type="service" id="jeancsil_flight_spy.writer.notification.elasticSearch" />
+            </call>
+            <call method="setPriceFormatter">
+                <argument type="service" id="jeancsil_flight_spy.service.formatter.price" />
             </call>
         </service>
 

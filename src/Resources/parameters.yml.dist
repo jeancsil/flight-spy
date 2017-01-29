@@ -11,7 +11,6 @@ parameters:
     jeancsil.flightspy.email.config.from: 'me@mycompany.com'
     jeancsil.flightspy.email.config.to: 'your@company.com'
     jeancsil.flightspy.email.config.subject: 'The best deal!'
-    jeancsil.flightspy.email.config.message: 'From: %s<br />To: %s.<br />Departure: %s<br />Arrival: %s.<br />%s adults, %s kids<br />'
     jeancsil.flightspy.email.config.html: '<html><body>This is the html template<br />{message}</body></html>'
 
     jeancsil.flightspy.http.client.config:
