@@ -154,8 +154,8 @@ class Notifier implements NotifiableInterface
                 background-color:#3498db;border-color:#3498db;color:#ffffff;">Book</a>';
         }
 
-        return sprintf('
-            <tr>
+        return sprintf(
+            '<tr>
                 <td style="font-family:sans-serif;font-size:14px;vertical-align:top;padding-bottom:15px;">%s</td>
                 <td style="font-family:sans-serif;font-size:14px;vertical-align:top;padding-bottom:15px;">%s</td>
                 <td style="font-family:sans-serif;font-size:14px;vertical-align:top;padding-bottom:15px;">%s</td>
