@@ -21,7 +21,8 @@ class PriceFormatter
      * @param string $currencyCode
      * @return string
      */
-    public function format($price, $currencyCode) {
+    public function format($price, $currencyCode)
+    {
         foreach ($this->currencies as $currency) {
             if ($currency['Code'] == $currencyCode) {
                 if ($currency['SymbolOnLeft'] == 'true') {
