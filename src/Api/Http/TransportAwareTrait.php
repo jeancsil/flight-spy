@@ -13,9 +13,9 @@ trait TransportAwareTrait
     private $transport;
 
     /**
-     * @param Transport $transport
+     * @param TransportInterface $transport
      */
-    public function setTransport(Transport $transport)
+    public function setTransport(TransportInterface $transport)
     {
         $this->transport = $transport;
     }

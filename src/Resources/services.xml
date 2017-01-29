@@ -52,6 +52,12 @@
             </call>
         </service>
 
+        <service id="jeancsil_flight_spy.api_http.fake_transport"
+                 class="Jeancsil\FlightSpy\Api\Http\FakeTransport"
+                 public="true">
+            <argument>%resourcesDir%</argument>
+        </service>
+
         <service id="jeancsil_flight_spy.api_data_transfer.session_parameters_factory"
                  class="Jeancsil\FlightSpy\Api\DataTransfer\SessionParametersFactory"
                  public="true">

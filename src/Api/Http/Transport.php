@@ -12,12 +12,13 @@ use Jeancsil\FlightSpy\Service\ElasticSearch\ElasticSearchWriterTrait;
 use Jeancsil\FlightSpy\History\ElasticSearch\MappingProcessor;
 use Psr\Log\LoggerAwareTrait;
 
-class Transport
+class Transport implements TransportInterface
 {
     use LoggerAwareTrait;
     use ElasticSearchWriterTrait;
 
     const LIVE_PRICING = '/apiservices/pricing/v1.0';
+    const WAITING_TIME_IN_MILLIS = 500000;
 
     /**
      * @var \GuzzleHttp\Client
@@ -69,7 +70,7 @@ class Transport
             }
 
             $this->setPollUrl($request->getHeaders()['Location'][0], $parametersArray['apiKey']);
-            usleep(500000);
+            usleep(static::WAITING_TIME_IN_MILLIS);
         } catch (BadResponseException $e) {
             $this->logger->error(
                 sprintf(
