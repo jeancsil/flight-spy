@@ -122,7 +122,7 @@ class MappingProcessor implements Processor
 
         foreach ($this->dataCache['Currencies'] as $currency) {
             if ($currency['Code'] == $currencyCode) {
-                if ($currency['SymbolOnLeft']) {
+                if ($currency['SymbolOnLeft'] == 'true') {
                     return $currency['Symbol'] . $priceOption['Price'];
                 }
 
