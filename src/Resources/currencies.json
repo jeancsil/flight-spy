@@ -1,0 +1,1550 @@
+{
+    "ReferenceServiceResponseDto": {
+        "Currencies": {
+            "CurrencyDto": [
+                {
+                    "Code": "AED",
+                    "Symbol": "د.إ.‏",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "AFN",
+                    "Symbol": "AFN",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "ALL",
+                    "Symbol": "Lek",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "AMD",
+                    "Symbol": "դր.",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "ANG",
+                    "Symbol": "NAf.",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "AOA",
+                    "Symbol": "Kz",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "ARS",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "AUD",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "AWG",
+                    "Symbol": "Afl.",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "AZN",
+                    "Symbol": "₼",
+                    "ThousandsSeparator": " ",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "BAM",
+                    "Symbol": "КМ",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "BBD",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "BDT",
+                    "Symbol": "BDT",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "BGN",
+                    "Symbol": "лв.",
+                    "ThousandsSeparator": " ",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "BHD",
+                    "Symbol": "د.ب.‏",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "3"
+                },
+                {
+                    "Code": "BIF",
+                    "Symbol": "FBu",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "0"
+                },
+                {
+                    "Code": "BMD",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "BND",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "BOB",
+                    "Symbol": "Bs",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "BRL",
+                    "Symbol": "R$",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "BSD",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "BTN",
+                    "Symbol": "Nu.",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "BWP",
+                    "Symbol": "P",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "BYN",
+                    "Symbol": "Br",
+                    "ThousandsSeparator": " ",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "BYR",
+                    "Symbol": "р.",
+                    "ThousandsSeparator": " ",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "BZD",
+                    "Symbol": "BZ$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "CAD",
+                    "Symbol": "C$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "CDF",
+                    "Symbol": "FC",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "CHF",
+                    "Symbol": "CHF",
+                    "ThousandsSeparator": "'",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "CLP",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "CNY",
+                    "Symbol": "¥",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "COP",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "CRC",
+                    "Symbol": "₡",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "CUC",
+                    "Symbol": "CUC",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "CUP",
+                    "Symbol": "$MN",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "CVE",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "CZK",
+                    "Symbol": "Kč",
+                    "ThousandsSeparator": " ",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "DJF",
+                    "Symbol": "Fdj",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "0"
+                },
+                {
+                    "Code": "DKK",
+                    "Symbol": "kr.",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "DOP",
+                    "Symbol": "RD$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "DZD",
+                    "Symbol": "د.ج.‏",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "EGP",
+                    "Symbol": "ج.م.‏",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "ERN",
+                    "Symbol": "Nfk",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "ETB",
+                    "Symbol": "ETB",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "EUR",
+                    "Symbol": "€",
+                    "ThousandsSeparator": " ",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "FJD",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "GBP",
+                    "Symbol": "£",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "GEL",
+                    "Symbol": "₾",
+                    "ThousandsSeparator": " ",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "GHS",
+                    "Symbol": "GH¢",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "GIP",
+                    "Symbol": "£",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "GMD",
+                    "Symbol": "D",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "GNF",
+                    "Symbol": "FG",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "0"
+                },
+                {
+                    "Code": "GTQ",
+                    "Symbol": "Q",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "GYD",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "HKD",
+                    "Symbol": "HK$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "HNL",
+                    "Symbol": "L.",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "HRK",
+                    "Symbol": "kn",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "HTG",
+                    "Symbol": "G",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "HUF",
+                    "Symbol": "Ft",
+                    "ThousandsSeparator": " ",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "IDR",
+                    "Symbol": "Rp",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "ILS",
+                    "Symbol": "₪",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "INR",
+                    "Symbol": "₹",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "IQD",
+                    "Symbol": "د.ع.‏",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "IRR",
+                    "Symbol": "ريال",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": "/",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "ISK",
+                    "Symbol": "kr.",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "0"
+                },
+                {
+                    "Code": "JMD",
+                    "Symbol": "J$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "JOD",
+                    "Symbol": "د.ا.‏",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "3"
+                },
+                {
+                    "Code": "JPY",
+                    "Symbol": "¥",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "0"
+                },
+                {
+                    "Code": "KES",
+                    "Symbol": "S",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "KGS",
+                    "Symbol": "сом",
+                    "ThousandsSeparator": " ",
+                    "DecimalSeparator": "-",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "KHR",
+                    "Symbol": "KHR",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "KMF",
+                    "Symbol": "CF",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "KPW",
+                    "Symbol": "₩",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "0"
+                },
+                {
+                    "Code": "KRW",
+                    "Symbol": "₩",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "0"
+                },
+                {
+                    "Code": "KWD",
+                    "Symbol": "د.ك.‏",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "3"
+                },
+                {
+                    "Code": "KYD",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "KZT",
+                    "Symbol": "Т",
+                    "ThousandsSeparator": " ",
+                    "DecimalSeparator": "-",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "LAK",
+                    "Symbol": "₭",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "0"
+                },
+                {
+                    "Code": "LBP",
+                    "Symbol": "ل.ل.‏",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "LKR",
+                    "Symbol": "Rp",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "LRD",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "LSL",
+                    "Symbol": "M",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "LYD",
+                    "Symbol": "د.ل.‏",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "3"
+                },
+                {
+                    "Code": "MAD",
+                    "Symbol": "د.م.‏",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "MDL",
+                    "Symbol": "lei",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "MGA",
+                    "Symbol": "Ar",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "0"
+                },
+                {
+                    "Code": "MKD",
+                    "Symbol": "ден.",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "MMK",
+                    "Symbol": "K",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "MNT",
+                    "Symbol": "₮",
+                    "ThousandsSeparator": " ",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "MOP",
+                    "Symbol": "MOP$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "MRO",
+                    "Symbol": "UM",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "MUR",
+                    "Symbol": "Rs",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "MVR",
+                    "Symbol": "MVR",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "MWK",
+                    "Symbol": "MK",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "MXN",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "MYR",
+                    "Symbol": "RM",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "MZN",
+                    "Symbol": "MT",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "NAD",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "NGN",
+                    "Symbol": "₦",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "NIO",
+                    "Symbol": "C$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "NOK",
+                    "Symbol": "kr",
+                    "ThousandsSeparator": " ",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "NPR",
+                    "Symbol": "रु",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "NZD",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "OMR",
+                    "Symbol": "ر.ع.‏",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "3"
+                },
+                {
+                    "Code": "PAB",
+                    "Symbol": "B/.",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "PEN",
+                    "Symbol": "S/.",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "PGK",
+                    "Symbol": "K",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "PHP",
+                    "Symbol": "P",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "PKR",
+                    "Symbol": "Rs",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "PLN",
+                    "Symbol": "zł",
+                    "ThousandsSeparator": " ",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "PYG",
+                    "Symbol": "Gs",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "QAR",
+                    "Symbol": "ر.ق.‏",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "RON",
+                    "Symbol": "lei",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "RSD",
+                    "Symbol": "Дин.",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "RUB",
+                    "Symbol": "p.",
+                    "ThousandsSeparator": " ",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "RWF",
+                    "Symbol": "RWF",
+                    "ThousandsSeparator": " ",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "SAR",
+                    "Symbol": "ر.س.‏",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "SBD",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "SCR",
+                    "Symbol": "Rs",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "SDG",
+                    "Symbol": "ج.س.‏",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "SEK",
+                    "Symbol": "kr",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "0"
+                },
+                {
+                    "Code": "SGD",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "SHP",
+                    "Symbol": "£",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "SLL",
+                    "Symbol": "Le",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "SOS",
+                    "Symbol": "S",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "SRD",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "STD",
+                    "Symbol": "Db",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "SYP",
+                    "Symbol": "ل.س.‏",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "SZL",
+                    "Symbol": "E",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "THB",
+                    "Symbol": "฿",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "TJS",
+                    "Symbol": "TJS",
+                    "ThousandsSeparator": " ",
+                    "DecimalSeparator": ";",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "TMT",
+                    "Symbol": "m",
+                    "ThousandsSeparator": " ",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "TND",
+                    "Symbol": "د.ت.‏",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "3"
+                },
+                {
+                    "Code": "TOP",
+                    "Symbol": "T$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "TRY",
+                    "Symbol": "TL",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "TTD",
+                    "Symbol": "TT$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "TWD",
+                    "Symbol": "NT$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "TZS",
+                    "Symbol": "TSh",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "UAH",
+                    "Symbol": "грн.",
+                    "ThousandsSeparator": " ",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "UGX",
+                    "Symbol": "USh",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "USD",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "UYU",
+                    "Symbol": "$U",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "UZS",
+                    "Symbol": "сўм",
+                    "ThousandsSeparator": " ",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "VEF",
+                    "Symbol": "Bs. F.",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "VND",
+                    "Symbol": "₫",
+                    "ThousandsSeparator": ".",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "1"
+                },
+                {
+                    "Code": "VUV",
+                    "Symbol": "VT",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "0"
+                },
+                {
+                    "Code": "WST",
+                    "Symbol": "WS$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "XAF",
+                    "Symbol": "F",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "XCD",
+                    "Symbol": "$",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "XOF",
+                    "Symbol": "F",
+                    "ThousandsSeparator": " ",
+                    "DecimalSeparator": ",",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "XPF",
+                    "Symbol": "F",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "false",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "YER",
+                    "Symbol": "ر.ي.‏",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "ZAR",
+                    "Symbol": "R",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "true",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                },
+                {
+                    "Code": "ZMW",
+                    "Symbol": "ZK",
+                    "ThousandsSeparator": ",",
+                    "DecimalSeparator": ".",
+                    "SymbolOnLeft": "true",
+                    "SpaceBetweenAmountAndSymbol": "false",
+                    "RoundingCoefficient": "0",
+                    "DecimalDigits": "2"
+                }
+            ]
+        },
+        "_xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
+        "_xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"
+    }
+}

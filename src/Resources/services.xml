@@ -6,7 +6,12 @@
 
     <imports>
         <import resource="config/notifiers.xml"/>
+        <import resource="config/services.xml"/>
     </imports>
+
+    <parameters>
+        <parameter key="resourcesDir">src/Resources</parameter>
+    </parameters>
 
     <services>
         <service id="jeancsil_flight_spy.facade.deal_processor"
@@ -21,9 +26,6 @@
                  class="Jeancsil\FlightSpy\Facade\MultiDealFacade"
                  parent="jeancsil_flight_spy.facade.deal_processor" />
 
-        <service id="jeancsil_flight_spy.facade.single_deal"
-                 class="Jeancsil\FlightSpy\Facade\SingleDealFacade"
-                 parent="jeancsil_flight_spy.facade.deal_processor" />
 
         <service id="jeancsil_flight_spy.validator.command_line_parameter"
                  class="Jeancsil\FlightSpy\Validator\CommandLineParameterValidator"
@@ -62,7 +64,7 @@
         <service id="jeancsil_flight_spy.api_processor.live_prices"
                  class="Jeancsil\FlightSpy\Api\Processor\LivePricePostProcessor"
                  public="true">
-            <argument>%jeancsil.flightspy.email.config.html%</argument>
+            <argument type="service" id="jeancsil_flight_spy.service.formatter.price" />
             <call method="addNotifier">
                 <argument type="service" id="jeancsil_flight_spy.notifier.email" />
             </call>
@@ -120,12 +122,20 @@
                  class="Monolog\Handler\StreamHandler">
             <argument>/tmp/skyscanner.log</argument>
             <argument type="constant">Monolog\Logger::DEBUG</argument>
+
+            <call method="setFormatter">
+                <argument type="service" id="jeancsil_flight_spy.logger.formatter" />
+            </call>
         </service>
 
         <service id="jeancsil_flight_spy.logger.stdout"
                  class="Monolog\Handler\StreamHandler">
             <argument>php://stdout</argument>
             <argument type="constant">Monolog\Logger::DEBUG</argument>
+
+            <call method="setFormatter">
+                <argument type="service" id="jeancsil_flight_spy.logger.formatter" />
+            </call>
         </service>
 
         <service id="jeancsil_flight_spy.logger.array_logger"
@@ -148,6 +158,10 @@
             <call method="pushHandler">
                 <argument type="service" id="jeancsil_flight_spy.logger.stdout" />
             </call>
+        </service>
+
+        <service id="jeancsil_flight_spy.logger.formatter"
+                 class="Jeancsil\FlightSpy\Log\MultiLineFormatter">
         </service>
     </services>
 </container>
