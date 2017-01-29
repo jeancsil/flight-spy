@@ -8,6 +8,7 @@ namespace Jeancsil\FlightSpy\Api\Processor;
 use Jeancsil\FlightSpy\Api\DataTransfer\SessionParameters;
 use Jeancsil\FlightSpy\Notifier\Deal;
 use Jeancsil\FlightSpy\Notifier\NotifiableInterface;
+use Jeancsil\FlightSpy\Service\Currency\PriceFormatter;
 use Psr\Log\LoggerAwareTrait;
 
 class LivePricePostProcessor
@@ -17,19 +18,28 @@ class LivePricePostProcessor
     const MAX_PARSED_DEALS = 50;
 
     /**
+     * @var PriceFormatter
+     */
+    private $priceFormatter;
+
+    /**
      * @var NotifiableInterface[]
      */
     private $notifiers = [];
-
     /**
      * @var SessionParameters
      */
     private $sessionParameters;
-
     /**
      * @var array
      */
     private $agents = [];
+
+    public function __construct(PriceFormatter $priceFormatter)
+    {
+        $this->priceFormatter = $priceFormatter;
+    }
+
 
     /**
      * @param \Jeancsil\FlightSpy\Notifier\NotifiableInterface $notifier
@@ -99,14 +109,16 @@ class LivePricePostProcessor
         $resultCount = 1;
         $cheapestItineraries = array_slice($itineraries, 0, static::MAX_PARSED_DEALS);
         foreach ($cheapestItineraries as $itinerary) {
-            $logMessage = sprintf('Verifying itinerary #%s: ', $resultCount++);
+            $logMessage = sprintf("Verifying itinerary #%s: ", $resultCount++);
 
             foreach ($itinerary['PricingOptions'] as $pricingOption) {
                 $price = $this->getPrice($pricingOption);
 
                 if ($price <= $this->sessionParameters->getMaxPrice()) {
-                    $logMessage .= sprintf("%sDeal found (%s)%s", chr(27) . '[1;32m', $price, chr(27) . "[0m");
-                    $this->logger->debug($logMessage);
+                    $formattedPrice = $this->priceFormatter->format($price, $this->sessionParameters->currency);
+                    $this->logger->debug(
+                        "$logMessage [{$this->getAgentName($pricingOption)}] Deal found ($formattedPrice)"
+                    );
 
                     $deals[] = new Deal(
                         $this->sessionParameters,
