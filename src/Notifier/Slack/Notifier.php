@@ -35,10 +35,7 @@ class Notifier implements NotifiableInterface
         $this->slackUserName = $slackUserName;
     }
 
-    /**
-     * @param Deal[] $deals
-     * @param SessionParameters $sessionParameters
-     */
+    /** @inheritdoc */
     public function notify(array $deals, SessionParameters $sessionParameters)
     {
         $notifications = $this->createNotifications($sessionParameters, $deals);
