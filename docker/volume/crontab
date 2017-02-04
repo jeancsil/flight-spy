@@ -1,0 +1,1 @@
+*/15 * * * * /usr/local/bin/php /flight-spy/bin/flight-watcher flightspy:skyscanner:live_prices --file=/watcher/watch.json >> /var/log/cron.log 2>&1
