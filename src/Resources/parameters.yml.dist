@@ -22,7 +22,7 @@ parameters:
             User-Agent: 'Mozilla/4.0 (Windows NT 9.0; WOW64)'
 
     jeancsil.flightspy.elasticsearch.host: elasticsearch
-        jeancsil.flightspy.elasticsearch.port: 9200
-        jeancsil.flightspy.elasticsearch.indexName: flightspy
-        jeancsil.flightspy.elasticsearch.historyType: history
-        jeancsil.flightspy.elasticsearch.notificationType: notification
+    jeancsil.flightspy.elasticsearch.port: 9200
+    jeancsil.flightspy.elasticsearch.indexName: flightspy
+    jeancsil.flightspy.elasticsearch.historyType: history
+    jeancsil.flightspy.elasticsearch.notificationType: notification
