@@ -50,17 +50,24 @@ $ docker-compose up -d
 ```
 PUT /flightspy
 {
-  "history": {
-    "properties": {
-      "Creation": {
-        "type": "date"
-      },
-      "SessionKey": {
-        "type": "keyword"
-      }
-      ..........
-HERE GOES THE CONTENT OF THIS FILE:
-https://github.com/jeancsil/flight-spy/blob/master/src/Resources/elasticsearch/mappings.json
+  "settings": {
+    "number_of_replicas": 0,
+    "number_of_shards": 1
+  },
+  "mappings": {
+    "history": {
+      "properties": {
+        "Creation": {
+          "type": "date"
+        },
+        "SessionKey": {
+          "type": "keyword"
+        }
+    .......
+    HERE GOES THE CONTENT OF THIS FILE:
+    https://github.com/jeancsil/flight-spy/blob/master/src/Resources/elasticsearch/mappings.json
+  }
+}
 ```
 
 ## Visualize your watched prices with Kibana
