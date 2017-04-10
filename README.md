@@ -46,6 +46,22 @@ Rename the `docker/volume/watch.json.dist` to `docker/volume/watch.json` and fil
 $ git clone https://github.com/jeancsil/flight-spy.git
 $ docker-compose up -d
 ```
+## Create your elasticsearch index to hold your history data
+```
+PUT /flightspy
+{
+  "history": {
+    "properties": {
+      "Creation": {
+        "type": "date"
+      },
+      "SessionKey": {
+        "type": "keyword"
+      }
+      ..........
+HERE GOES THE CONTENT OF THIS FILE:
+https://github.com/jeancsil/flight-spy/blob/master/src/Resources/elasticsearch/mappings.json
+```
 
 ## Visualize your watched prices with Kibana
 
