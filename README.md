@@ -70,6 +70,11 @@ PUT /flightspy
 }
 ```
 
+## Configure kibana index pattern
+Browse to this url: http://localhost:5601/
+In the first screen, kibana will ask you to create the index pattern to show you some data.
+You can fill your index name: flightspy or flightstpy*
+
 ## Visualize your watched prices with Kibana
 
 ![alt text](https://raw.githubusercontent.com/jeancsil/flight-spy/master/src/Resources/KibanaDashboard.png "Kibana Dashboard")
