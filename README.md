@@ -8,9 +8,9 @@
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/jeancsil/flight-spy.svg?style=social)](https://twitter.com/intent/tweet?text=Watch+the+best+fare+for+your+next+trip!&url=http://github.com%2Fjeancsil%2Fflight-spy)
 
 
-##Looking for the cheapest flights and don't have enough time to track all the prices?
+## Looking for the cheapest flights and don't have enough time to track all the prices?
 
-####Be notified whenever the budget you're looking for pops up by only declaring a **simple JSON file**!
+#### Be notified whenever the budget you're looking for pops up by only declaring a **simple JSON file**!
 
 ```
 [
